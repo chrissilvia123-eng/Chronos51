@@ -1,0 +1,150 @@
+# Chronos 51 — UE5 .gitignore
+# Generated 2026-11-13
+
+# Unreal Engine Build Artifacts
+/Build/
+/Binaries/
+/DerivedDataCache/
+/Intermediate/
+/Saved/
+/Saved/StagedBuilds/
+
+# Visual Studio / Rider / VS Code
+/.vs/
+/.vscode/
+*.sln
+*.vcxproj*
+*.vcxproj.filters
+*.vcxproj.user
+*.csproj
+*.csproj.user
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build Tools
+*.log
+*.log.*
+*.bak
+*.tmp
+*.temp
+*.swp
+*~
+
+# OS Files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# IDE/Editor
+.idea/
+*.iml
+*.iws
+*.ipr
+*.idea/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.venv/
+venv/
+.env
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Testing
+*.coverage
+coverage/
+.nyc_output/
+
+# Profiling
+*.prof
+*.profraw
+*.gcda
+*.gcno
+*.gcov
+
+# Local Config (never commit)
+/Config/Local*
+/Config/Windows/
+/Config/Mac/
+/Config/Linux/
+
+# Plugins (binary)
+/Plugins/*/Binaries/
+/Plugins/*/Intermediate/
+/Plugins/*/DerivedDataCache/
+
+# Packaged Builds
+/[Pp]ackages/
+/[Dd]ist/
+
+# Crash Reports
+/CrashReportClient/
+
+# Automation
+*.automation.*
+
+# Shader Cache
+/ShaderCache/
+
+# Nativized Assets
+/NativizedAssets/
+
+# Generated Docs
+/Documentation/Generated/
+
+# Localization (generated)
+/Localization/*/Manifests/
+/Localization/*/Archives/
+
+# Python Virtual Environments
+.venv/
+venv/
+ENV/
+env/
+
+# Terraform / Infrastructure
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfplan
+
+# Secrets (never commit!)
+*.key
+*.pem
+*.p12
+*.pfx
+*.cer
+*.crt
+*.pem
+*.key
+secrets.*
+.env.local
+.env.*.local
+
+# Large Data (handled by LFS but ignore anyway)
+*.usd
+*.fbx
+*.obj
+*.glb
+*.gltf
+*.blend
+*.abc
+*.png
+*.jpg
+*.exr
+*.hdr
+*.wav
+*.ogg
+*.uasset
+*.umap
+*.upk

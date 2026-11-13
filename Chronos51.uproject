@@ -1,0 +1,47 @@
+{
+  "FileVersion": 3,
+  "EngineAssociation": "5.3",
+  "Category": "",
+  "Description": "Chronos 51 - Dual-timeline puzzle-exploration game",
+  "Modules": [
+    {
+      "Name": "Chronos51",
+      "Type": "Runtime",
+      "LoadingPhase": "Default",
+      "AdditionalDependencies": [
+        "GameplayAbilities",
+        "GameplayTags",
+        "GameplayTasks"
+      ]
+    }
+  ],
+  "Plugins": [
+    {
+      "Name": "EnhancedInput",
+      "Enabled": true
+    },
+    {
+      "Name": "GameplayAbilities",
+      "Enabled": true
+    },
+    {
+      "Name": "Niagara",
+      "Enabled": true
+    },
+    {
+      "Name": "MetaSounds",
+      "Enabled": true
+    },
+    {
+      "Name": "USDImporter",
+      "Enabled": true
+    },
+    {
+      "Name": "WorldPartition",
+      "Enabled": true
+    }
+  ],
+  "TargetPlatforms": [
+    "Windows"
+  ]
+}
