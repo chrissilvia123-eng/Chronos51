@@ -1,0 +1,75 @@
+// Global Variables
+// ================
+
+<<set $trust = 0>>
+// Trust level with Astra: 0-10
+// Unlocks: Astra commands, dialogue variants, ending eligibility
+
+<<set $memory_fragments = 0>>
+// Memory fragments collected: 0-12
+// Each fragment unlocks narrative context + Astra memory
+
+<<set $organs_restored = 0>>
+// Organs restored: 0-4 (Chronos, Neural, Void, Gravity)
+// Each organ grants traversal ability + story progression
+
+<<set $current_zone = "EntryHangar">>
+// Current zone ID for fast travel, puzzle context
+
+<<set $current_timeline = "present">>
+// Timeline state: "present" or "past"
+
+<<set $visited_vista_nodes = []>>
+// Array of VistaNode IDs player has activated
+
+<<set $solved_puzzles = []>>
+// Array of PuzzleIDs solved
+
+<<set $active_puzzle = "">>
+// Currently active puzzle ID (for hint system)
+
+<<set $resonance_currency = 0>>
+// Resonance collected (currency for hints, cosmetics)
+
+<<set $game_mode = "standard">>
+// "standard" | "accessibility" | "newgameplus"
+
+<<set $ending_flags = {}>>
+// Dictionary tracking ending-determining choices
+// Keys: "saved_corwin", "freed_astra", "sacrificed_self", "trusted_corwin"
+
+<<set $astra_visual_state = "idle">>
+// "idle" | "scanning" | "memory" | "distress" | "unity"
+// Drives Niagara VFX + shader parameters
+
+<<set $astra_recall_distance = 0>>
+// Distance from player when recalled (for behavior tree)
+
+<<set $last_save_timestamp = "">>
+// ISO timestamp of last save (for UI display)
+
+<<set $photo_mode_active = false>>
+// Whether photo mode is currently active
+
+<<set $accessibility_reduced_motion = false>>
+// Player preference: reduced motion for phase shifts
+
+<<set $accessibility_instant_cuts = false>>
+// Player preference: instant camera cuts instead of blends
+
+<<set $accessibility_high_contrast = false>>
+// Player preference: high contrast UI
+
+<<set $accessibility_dyslexic_font = false>>
+// Player preference: dyslexic-friendly font
+
+<<set $language = "en">>
+// Current localization language
+
+
+// Global Functions
+// ================
+
+<<function TrustLevel>>
+    <<return $trust>>
+<

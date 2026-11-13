@@ -1,0 +1,173 @@
+// Act 1 - Entry Hangar
+// =====================
+
+title: EntryHangar_Arrival
+tags: act1, entryhangar, arrival
+---
+<<SetZone "EntryHangar">>
+<<SetTimeline "present">>
+
+Astra: <<if $trust < 2>>
+    [Projection flickers, static-laced]
+    "Navigation... systems... compromised. Temporal anchor... lost."
+    "You... are Xylos. Navigator. Designation... confirmed."
+    "My designation... is Astra. Ship consciousness. Fractured."
+<<else>>
+    [Stable projection, warm light]
+    "Welcome back, Navigator. Temporal drift at 0.3%."
+    "The fracture still echoes. But you're here."
+<</if>>
+
+<<if not HasVisitedVistaNode "EntryHangar_Orientation">>
+    Astra: "This... is the Entry Hangar. First point of contact. 1947."
+    "Your ship... the *Chronos*... crashed here. Buried. Forgotten."
+    "Four organs... torn free. Scattered across... time."
+    "Restore them. Reunite us. End... the fracture."
+<<else>>
+    Astra: "The Orientation Node awaits. Your first Phase Shift."
+<</if>>
+
+-> Choice_Intro
+===
+
+title: Choice_Intro
+---
+<<if $trust < 3>>
+    Astra: "I... have fragments. Memories. Not all... accessible."
+    "Trust... builds access. Help me... I help you."
+<</if>>
+
++ [Approach Orientation Node] -> Node_Orientation_Approach
++ "What happened here?" -> Dialogue_History
++ "Who... what are you?" -> Dialogue_Identity
++ "How do I phase?" -> Dialogue_PhaseTutorial
++ [Check Journal] -> Command_ShowJournal
+===
+
+title: Dialogue_History
+---
+Astra: "1947. Roswell. The *Chronos*... fell through a temporal rift."
+"Human military... recovered wreckage. Built... this facility. Around us."
+"Area 51. Groom Lake. They studied us. Dissected us."
+"1952. 1957. 1962. Each experiment... tore the fracture wider."
+"Now... 2024. The facility... abandoned. Ruins. But time... bleeds."
+
+-> Choice_Intro
+===
+
+title: Dialogue_Identity
+---
+Astra: "I am... was... the *Chronos*'s mind. Ship consciousness."
+"Bound to crystal lattice. Neural Loom. Chronos Core. Void Sail. Gravity Anchor."
+"Four organs. Four functions. Navigation. Memory. Movement. Gravity."
+"Now... scattered. I am... a projection. Hard-light. Fading."
+"Each organ restored... returns a piece of me. Of us."
+
+-> Choice_Intro
+===
+
+title: Dialogue_PhaseTutorial
+---
+Astra: "Phase Shift... requires a Vista Node. Fixed camera. Past timeline."
+"Present... ruins. Past... operational. 1947 to 1962."
+"Solve... in past. Changes... manifest in present. Causality."
+"Approach node. Hold [Phase]. Transition... begins."
+"In past... interact. Astra commands... [Scan] [Wait] [Follow] [Recall] [Hold]."
+"Complete puzzle. Return... present altered."
+
+-> Choice_Intro
+===
+
+title: Node_Orientation_Approach
+---
+<<MarkVistaNodeVisited "EntryHangar_Orientation">>
+Astra: "Orientation Node. Active. Ready for... first shift."
+"Prepare... Navigator. The past... awaits."
+
+-> Phase_Shift_Orientation
+===
+
+title: Phase_Shift_Orientation
+---
+<<TriggerPhaseShift "EntryHangar_Orientation">>
+<<SetTimeline "past">>
+<<PlaySequence "LS_PhaseShift_EntryHangar_Orientation">>
+
+Astra: [Voice echoes, layered]
+"Temporal displacement... initiating."
+"Anchor... 1947. October. Arrival."
+"Observe... learn. The fracture... begins here."
+
+-> Past_EntryHangar_Start
+===
+
+title: Past_EntryHangar_Start
+---
+Astra: "Welcome... to the beginning. October 1947."
+"Your ship... crashed here. Military... en route."
+"First puzzle: **Containment Breach Protocol**."
+"Stabilize the Chronos Core... before they breach it."
+
+<<SetActivePuzzle "EntryHangar_ContainmentBreach">>
+
+Astra: "Three containment fields. One... destabilizing."
+"Use [Scan] on field generators. Find... the sequence."
+"Field Alpha... Beta... Gamma. Order... matters."
+
+-> Puzzle_ContainmentBreach
+===
+
+title: Puzzle_ContainmentBreach
+---
+Astra: "[Scan] reveals... Field Alpha: stable. Beta: fluctuating. Gamma: critical."
+"Sequence... must be: Alpha. Gamma. Beta. Stabilize cascading."
+"Command me: [Hold] at each generator. I will... synchronize."
+
+<<command RevealClue "CLUE_CONTAINMENT_SEQUENCE">>
+
+-> Puzzle_ContainmentBreach_Step2
+===
+
+title: Puzzle_ContainmentBreach_Step2
+---
+Astra: "Alpha... secured. Gamma... next. Fluctuation... rising."
+"[Hold] at Gamma. Timing... precise. Window... 0.5 seconds."
+
+<<command RevealClue "CLUE_GAMMA_TIMING">>
+
+-> Puzzle_ContainmentBreach_Step3
+===
+
+title: Puzzle_ContainmentBreach_Step3
+---
+Astra: "Gamma... stabilized. Beta... final. Sequence... complete."
+"Containment... secured. Chronos Core... protected. For now."
+
+<<MarkPuzzleSolved "EntryHangar_ContainmentBreach">>
+<<AddResonance 50>>
+<<AddMemoryFragment "Fragment_1">>
+<<SetAstraVisualState "memory">>
+
+Astra: [Projection stabilizes, new memory surfacing]
+"Memory fragment... recovered. Trust... increased."
+"Present... changed. Containment door... now accessible."
+"Return... to present. Phase Shift... reverse."
+
+<<SetEndingFlag "first_puzzle_solved" true>>
+<<AddTrust 1>>
+
+-> Phase_Shift_Return_Orientation
+===
+
+title: Phase_Shift_Return_Orientation
+---
+<<TriggerPhaseShift "EntryHangar_Orientation">>
+<<SetTimeline "present">>
+<<PlaySequence "LS_PhaseShift_EntryHangar_Orientation_Return">>
+
+Astra: "Present... restored. Door... open. Path... forward."
+"Reactor Core... next zone. Second Vista Node... awaits."
+"Navigator... move. The fracture... does not wait."
+
+-> Choice_Intro
+===

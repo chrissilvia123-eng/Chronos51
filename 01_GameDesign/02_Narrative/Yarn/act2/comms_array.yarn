@@ -1,0 +1,298 @@
+// Act 2 - Comms Array
+// ===================
+
+title: CommsArray_Arrival
+tags: act2, commsarray, arrival
+---
+<<SetZone "CommsArray">>
+<<SetTimeline "present">>
+
+Astra: <<if $trust < 8>>
+    [Projection resonates with dish hum]
+    "Comms Array. Signal... intelligence. Origin... tracking."
+    "Void Sail... here. Movement... organ. Dimensional bridge."
+<<else>>
+    "Comms Array. Two Vista Nodes. Array Control... Signal Analysis."
+    "Signal Triangulation... and Archive Decryption. Puzzles... linked."
+<</if>>
+
+<<if not HasVisitedVistaNode "CommsArray_Control">>
+    Astra: "Array Control. First node. Signal Triangulation puzzle."
+    "Three dishes. Must... align. Triangulate... origin signal."
+<<else>>
+    Astra: "Array Control... complete. Signal Analysis... awaits."
+<</if>>
+
+-> Choice_CommsArray
+===
+
+title: Choice_CommsArray
+---
++ [Approach Array Control] -> Node_CommsArray_Control_Approach
++ [Approach Signal Analysis] -> Node_CommsArray_Analysis_Approach
++ "What is the origin signal?" -> Dialogue_OriginSignal
++ "Tell me about the Void Sail." -> Dialogue_VoidSail
++ "Corwin... is he here?" -> Dialogue_CorwinComms
++ [Fast Travel] -> Command_ShowJournal_Map
+===
+
+title: Dialogue_OriginSignal
+---
+Astra: "The signal... is *me*. Or... was. My distress call."
+"Sent... at crash. 1947. Scattered... across time."
+"Each dish... catches a fragment. Aligned... reveals... location."
+"Of the *Chronos*'s core. Of... the fracture's heart."
+"Corwin... knows. He *built* this array. To find us."
+
+-> Choice_CommsArray
+===
+
+title: Dialogue_VoidSail
+---
+Astra: "Void Sail... third organ. Movement. Dimensional bridge."
+"Double jump. Glide. Phase... through barriers."
+"In past... reach inaccessible nodes. In present... traverse... new paths."
+"Chronos Core... time. Neural Loom... memory. Void Sail... *freedom*."
+
+-> Choice_CommsArray
+===
+
+title: Dialogue_CorwinComms
+---
+Astra: "Corwin... Director. He oversees... all timelines."
+"Here... 1957. He watches. Records. Calculates."
+"He *chose* to stay. Anchor... for the fracture."
+"Some... say he seeks redemption. Others... control."
+"He knows... the signal. He knows... you."
+"Trust... him? Or... use him?"
+
+-> Choice_CommsArray
+===
+
+title: Node_CommsArray_Control_Approach
+---
+<<MarkVistaNodeVisited "CommsArray_Control">>
+Astra: "Array Control. Three dishes. Bearings... calculated."
+"Dish 1: 45.2°. Dish 2: 137.8°. Dish 3: 284.5°."
+"Target... origin signal. Triangulation... required."
+
+-> Phase_Shift_CommsArray_Control
+===
+
+title: Phase_Shift_CommsArray_Control
+---
+<<TriggerPhaseShift "CommsArray_Control">>
+<<SetTimeline "past">>
+<<PlaySequence "LS_PhaseShift_CommsArray_Control">>
+
+Astra: "1957. Array... online. Signal... detected."
+"Puzzle: **Signal Triangulation**. Align dishes. Decode... coordinates."
+"[Scan] each dish. Bearings... visible. Precision... required."
+
+<<SetActivePuzzle "CommsArray_SignalTriangulation">>
+
+-> Puzzle_SignalTriangulation_Start
+===
+
+title: Puzzle_SignalTriangulation_Start
+---
+Astra: "[Scan] Dish 1. Bearing... 45.2°. Signal... weak."
+"[Scan] Dish 2. Bearing... 137.8°. Signal... moderate."
+"[Scan] Dish 3. Bearing... 284.5°. Signal... strong."
+"Intersection... calculates origin. But... frequency... modulated."
+
+<<command RevealClue "CLUE_DISH_BEARINGS">>
+
+Astra: "Frequency... 7.83 Hz. Schumann resonance. Earth's... heartbeat."
+"Modulation... three harmonics. Pattern... temporal."
+"Command me: [Hold] at each dish. Match... frequency."
+
+-> Puzzle_SignalTriangulation_Step1
+===
+
+title: Puzzle_SignalTriangulation_Step1
+---
+Astra: "Dish 1... aligned. Frequency... matched. Dish 2... next."
+"[Hold] at Dish 2. Harmonic... second. Timing... precise."
+
+// Player executes Hold at Dish 2
+<<command RevealClue "CLUE_FREQUENCY_PATTERN">>
+
+-> Puzzle_SignalTriangulation_Step2
+===
+
+title: Puzzle_SignalTriangulation_Step2
+---
+Astra: "Dish 2... synchronized. Dish 3... final. Strongest signal."
+"[Hold] at Dish 3. Third harmonic. Window... narrow."
+
+// Player executes Hold at Dish 3
+<<command RevealClue "CLUE_BURST_TIMING">>
+
+-> Puzzle_SignalTriangulation_Step3
+===
+
+title: Puzzle_SignalTriangulation_Step3
+---
+Astra: "Triangulation... complete. Origin... located. Sub-Level 0."
+"But... transmission... required. Calibration burst."
+"Command me: [Follow] through array. Relay... signal."
+"Astra... becomes... the bridge."
+
+Corwin: [Appears at Array Control]
+"Impressive. The projection... navigates the signal. Autonomous."
+"Thorne would have... appreciated this. Distributed consciousness."
+"Your ship... the *Chronos*. It *is* the signal."
+"Receive... and... *become*."
+
+-> Puzzle_SignalTriangulation_Follow
+===
+
+title: Puzzle_SignalTriangulation_Follow
+---
+Astra: "[Follow] engaged. Relaying... through array path."
+"Dish 1 → Dish 2 → Dish 3 → Ground station → Sub-Level 0."
+"Signal... amplified. Coordinates... transmitted."
+
+// Player executes Follow command - Astra moves through array
+
+Corwin: "Transmission... received. At Sub-Level 0. They... know."
+"The fracture... pulses. Responds. *Alive*."
+"Navigator... you've woken it. Fully."
+
+-> Puzzle_SignalTriangulation_Complete
+===
+
+title: Puzzle_SignalTriangulation_Complete
+---
+Astra: "Transmission... complete. Void Sail... calibrated."
+"Present... changed. Dishes... aligned. Path... to Hangar 18... open."
+
+<<MarkPuzzleSolved "CommsArray_SignalTriangulation">>
+<<AddResonance 250>>
+<<AddMemoryFragment "Fragment_7">>
+<<AddMemoryFragment "Fragment_8">>
+<<AddTrust 2>>
+<<GrantOrgan "VoidSail">>
+<<SetAstraVisualState "unity">>
+
+Astra: "VOID SAIL RESTORED."
+"Double jump... unlocked. Glide... unlocked. Dimensional bridge... active."
+"Hangar 18... accessible. Gravity Anchor... awaits."
+
+<<SetEndingFlag "void_sail_restored" true>>
+<<UnlockFastTravel "Hangar18">>
+
+-> Phase_Shift_Return_CommsArray_Control
+===
+
+title: Phase_Shift_Return_CommsArray_Control
+---
+<<TriggerPhaseShift "CommsArray_Control">>
+<<SetTimeline "present">>
+<<PlaySequence "LS_PhaseShift_CommsArray_Control_Return">>
+
+Astra: "Present... Array aligned. Signal... clear. Bridge... to Hangar 18... extended."
+"Three organs restored. One... remains."
+"Gravity Anchor... in Hangar 18. Stasis... recovery."
+"Navigator... gravity... bends."
+
+-> Choice_CommsArray
+===
+
+title: Node_CommsArray_Analysis_Approach
+---
+<<MarkVistaNodeVisited "CommsArray_Analysis">>
+<<if not HasSolvedPuzzle "CommsArray_SignalTriangulation">>
+    Astra: "Signal Analysis. Archive Decryption. But... Triangulation... incomplete."
+    "Complete... Array Control first. Signal... before archive."
+    -> Choice_CommsArray
+<<else>>
+    Astra: "Signal Analysis. Archive Decryption. Director's... personal logs."
+    "Three cipher keys. Thorne. Reyes. Corwin. Temporal XOR... algorithm."
+    -> Phase_Shift_CommsArray_Analysis
+<</if>
+===
+
+title: Phase_Shift_CommsArray_Analysis
+---
+<<TriggerPhaseShift "CommsArray_Analysis">>
+<<SetTimeline "past">>
+<<PlaySequence "LS_PhaseShift_CommsArray_Analysis">>
+
+Astra: "1962. Cuban Missile Crisis. Facility... on high alert."
+"Director Corwin... personal logs. Encrypted. Three keys."
+"Puzzle: **Archive Decryption**. Decrypt... 1947-1962."
+
+<<SetActivePuzzle "CommsArray_ArchiveDecryption">>
+
+-> Puzzle_ArchiveDecryption_Start
+===
+
+title: Puzzle_ArchiveDecryption_Start
+---
+Astra: "[Scan] cipher terminal. Three key fragments... required."
+"Key 1: Thorne. 'ASCENT'. Neural mapping... project."
+"Key 2: Reyes. 'ANCHOR'. Security... protocol."
+"Key 3: Corwin. 'CONTINUITY'. Fracture... management."
+
+<<command RevealClue "CLUE_CIPHER_KEYS">>
+
+Astra: "Algorithm... Temporal XOR. Keys... time-dependent."
+"Log dates... determine XOR mask. 1947... 1952... 1957... 1962."
+"Command me: [Scan] each log terminal. Reveal... keys."
+
+-> Puzzle_ArchiveDecryption_Execute
+===
+
+title: Puzzle_ArchiveDecryption_Execute
+---
+Astra: "Scanning... Thorne's terminal. 1947. Key... ASCENT."
+"Scanning... Reyes's terminal. 1957. Key... ANCHOR."
+"Scanning... Corwin's terminal. 1962. Key... CONTINUITY."
+"Decrypting... logs. Temporal XOR... applied."
+
+Corwin: [Voice from 1962 terminal]
+"If you're reading this... you've broken my cipher."
+"Good. Means you're *smart*. Or *desperate*."
+"The fracture... cannot be contained. Only... managed."
+"I chose... to stay. To watch. To *ensure*."
+"Thorne died... for knowledge. Reyes died... for duty."
+"I... survive. For *continuity*."
+
+-> Puzzle_ArchiveDecryption_Complete
+===
+
+title: Puzzle_ArchiveDecryption_Complete
+---
+Astra: "Archive... decrypted. Logs... accessible. Truth... revealed."
+"Corwin... knew. Everything. Every timeline. Every choice."
+"Present... changed. Administration... accessible."
+
+<<MarkPuzzleSolved "CommsArray_ArchiveDecryption">>
+<<AddResonance 200>>
+<<AddMemoryFragment "Fragment_9">>
+<<AddTrust 1>>
+<<SetAstraVisualState "memory">>
+
+Astra: "Memory... Corwin's choice. 1962. He *stayed*. Voluntarily."
+"Administration... next. Director's Authorization... puzzle."
+"Return... present."
+
+<<UnlockFastTravel "Administration">>
+
+-> Phase_Shift_Return_CommsArray_Analysis
+===
+
+title: Phase_Shift_Return_CommsArray_Analysis
+---
+<<TriggerPhaseShift "CommsArray_Analysis">>
+<<SetTimeline "present">>
+<<PlaySequence "LS_PhaseShift_CommsArray_Analysis_Return">>
+
+Astra: "Present... Administration accessible. Door... unsealed."
+"Three organs. One remains. Gravity Anchor... Hangar 18."
+"Navigator... the weight... approaches."
+
+-> Choice_CommsArray
+===

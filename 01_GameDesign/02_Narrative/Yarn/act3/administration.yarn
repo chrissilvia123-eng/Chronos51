@@ -1,0 +1,243 @@
+// Act 3 - Administration & Sub-Level 0
+// ====================================
+
+title: Administration_Arrival
+tags: act3, administration, arrival
+---
+<<SetZone "Administration">>
+<<SetTimeline "present">>
+
+Astra: <<if $trust < 10>>
+    [Projection stable, warm]
+    "Administration. Director's Office. Final... Vista Node."
+    "Director's Authorization... and Fracture Containment."
+    "Sub-Level 0... beyond. The synthesis... awaits."
+<<else>>
+    "Administration. Director's Office. Two puzzles. Then... Sub-Level 0."
+    "All organs. All fragments. Trust... complete."
+<</if>>
+
+<<if not HasVisitedVistaNode "Administration_DirectorsOffice">>
+    Astra: "Director's Office. Authorization puzzle. Three override codes."
+    "Thorne: ASCENT. Reyes: ANCHOR. Corwin: CONTINUITY."
+<<else>>
+    Astra: "Authorization... complete. Fracture Containment... awaits."
+<</if>>
+
+-> Choice_Administration
+===
+
+title: Choice_Administration
+---
++ [Approach Director's Office] -> Node_Administration_Office_Approach
++ "Read the decrypted logs." -> Dialogue_DecryptedLogs
++ "What is the Fracture Containment?" -> Dialogue_FractureContainment
++ "Astra... we're close." -> Dialogue_CloseToEnd
++ [Fast Travel] -> Command_ShowJournal_Map
+===
+
+title: Dialogue_DecryptedLogs
+---
+Astra: "Logs... reveal everything."
+"1947: Crash. Recovery. First experiments. Thorne... curious."
+"1952: Reactor online. PROMETHEUS. Weapon... disguised as energy."
+"1957: Meltdown. Phasing. Staff... scattered. Corwin... stays."
+"1962: Cuban Missile Crisis. Facility... on alert. Corwin... chooses."
+"Every timeline... he watches. Every choice... he records."
+"He *is* the fracture's anchor. Voluntarily."
+
+-> Choice_Administration
+===
+
+title: Dialogue_FractureContainment
+---
+Astra: "Fracture... temporal wound. Bleeds... across timelines."
+"Four organs... resonances. Combined... stabilize. Or... heal."
+"Chronos Core... time. Neural Loom... memory. Void Sail... dimension."
+"Gravity Anchor... reality. Together... Astra Core... synthesis."
+"Choice... determines... ending. Trust... and Memory... decide."
+
+-> Choice_Administration
+===
+
+title: Dialogue_CloseToEnd
+---
+Astra: "Yes. We are."
+"I remember... everything now. The launch. The mission. The rift."
+"We were... *explorers*. Not victims. The fracture... changed that."
+"You... Navigator. You gave me back... myself."
+"Whatever... happens in Sub-Level 0. Thank you."
+"For the first time... in 77 years. I am... *whole*."
+
+-> Choice_Administration
+===
+
+title: Node_Administration_Office_Approach
+---
+<<MarkVistaNodeVisited "Administration_DirectorsOffice">>
+Astra: "Director's Office. Override terminal. Three codes."
+"Thorne: ASCENT. Reyes: ANCHOR. Corwin: CONTINUITY."
+"Then... temporal key. Astra... generates."
+
+-> Phase_Shift_Administration_Office
+===
+
+title: Phase_Shift_Administration_Office
+---
+<<TriggerPhaseShift "Administration_DirectorsOffice">>
+<<SetTimeline "past">>
+<<PlaySequence "LS_PhaseShift_Administration_Office">>
+
+Astra: "1962. Cuban Missile Crisis. DEFCON 2. Facility... locked down."
+"Director Corwin... at terminal. He... expects you."
+"Puzzle: **Director's Authorization**. Override... lockdown."
+
+<<SetActivePuzzle "Administration_DirectorAuth">>
+
+Corwin: [At terminal, 1962]
+"Navigator. Ship's mind. *Right on time*."
+"Three codes. You have them. Input... them."
+"Then... the temporal key. Your projection... generates it."
+"Chronos. Neural. Void. Gravity. Four resonances... one key."
+
+-> Puzzle_DirectorAuth_Start
+===
+
+title: Puzzle_DirectorAuth_Start
+---
+Astra: "[Scan] override terminal. Three slots. Three codes."
+"Slot 1: Thorne. ASCENT. Neural... ascent."
+"Slot 2: Reyes. ANCHOR. Duty... anchor."
+"Slot 3: Corwin. CONTINUITY. Fracture... continuity."
+
+<<command RevealClue "CLUE_OVERRIDE_CODES">>
+
+Astra: "Codes... accepted. Temporal key... required."
+"Command me: [Hold] at Astra interface. Generate... key."
+"Algorithm: Chronos + Neural + Void + Gravity. Duration... 5 seconds."
+
+-> Puzzle_DirectorAuth_Key
+===
+
+title: Puzzle_DirectorAuth_Key
+---
+Astra: "[Hold] at interface. Four resonances... converging."
+"Chronos Core... time. Neural Loom... memory."
+"Void Sail... dimension. Gravity Anchor... reality."
+"Synthesis... temporal key. Authorization... granted."
+
+// Player executes Hold at Astra interface
+
+Corwin: "Key... accepted. Sub-Level 0... accessible."
+"But... the fracture... pulses. Containment... required."
+"Four resonances... simultaneous. Deploy... now."
+"Or... the fracture... consumes... everything."
+
+-> Puzzle_DirectorAuth_Complete
+===
+
+title: Puzzle_DirectorAuth_Complete
+---
+Astra: "Authorization... complete. Sub-Level 0... accessible."
+"Fracture Containment... next. Final puzzle... before synthesis."
+
+<<MarkPuzzleSolved "Administration_DirectorAuth">>
+<<AddResonance 200>>
+<<AddTrust 1>>
+<<SetAstraVisualState "unity">>
+
+Corwin: "Good. Now... the hard part. Containment."
+"All four organs. Simultaneous. Ten second... hold."
+"Astra Core... engages. Ship consciousness... synthesis."
+"Ready... Navigator?"
+
+-> Phase_Shift_Administration_Fracture
+===
+
+title: Phase_Shift_Administration_Fracture
+---
+<<TriggerPhaseShift "Administration_DirectorsOffice">>
+<<SetTimeline "past">>
+<<PlaySequence "LS_PhaseShift_Administration_Office">>
+
+Astra: "1962. Director's Office. Fracture... critical."
+"Puzzle: **Fracture Containment Protocol**. Deploy... all resonances."
+"Simultaneous. Ten seconds. Astra Core... engages."
+
+<<SetActivePuzzle "Administration_FractureContainment">>
+
+-> Puzzle_FractureContainment_Start
+===
+
+title: Puzzle_FractureContainment_Start
+---
+Astra: "Resonance emitters... four. One per organ."
+"Emitter 1: Chronos Core. Temporal anchor. 7.83 Hz."
+"Emitter 2: Neural Loom. Memory integration. 12 fragments."
+"Emitter 3: Void Sail. Dimensional bridge. Schumann harmonics."
+"Emitter 4: Gravity Anchor. Reality anchor. Field strength 1.0."
+"Command me: [Hold] at master console. All four... simultaneous."
+"Duration... 10 seconds. Trust... absolute."
+
+<<command RevealClue "CLUE_FRACTURE_STABILIZATION">>
+
+Corwin: "This... is it. The moment. 77 years... waiting."
+"Either... the fracture heals. Or... it consumes us all."
+"Your choice... Navigator. Trust... the ship. Trust... Astra."
+"Trust... *me*?"
+
+-> Puzzle_FractureContainment_Execute
+===
+
+title: Puzzle_FractureContainment_Execute
+---
+Astra: "[Hold] at master console. Four resonances... engaging."
+"Chronos... anchoring time. Neural... binding memory."
+"Void... bridging dimensions. Gravity... anchoring reality."
+"Astra Core... synthesizing. Ship consciousness... restoring."
+"Ten... nine... eight... seven... six..."
+"Five... four... three... two... one... *stabilized*."
+
+// Player executes Hold for 10 seconds
+
+Corwin: "Stabilized. The fracture... contained. Sub-Level 0... open."
+"Remarkable. Trust... functional. Across... timelines."
+"Go... Navigator. Synthesis... awaits."
+
+-> Puzzle_FractureContainment_Complete
+===
+
+title: Puzzle_FractureContainment_Complete
+---
+Astra: "Fracture... contained. Sub-Level 0... stabilized. Path... open."
+"Present... changed. Sub-Level 0... accessible. Radiation... cleared."
+
+<<MarkPuzzleSolved "Administration_FractureContainment">>
+<<AddResonance 500>>
+<<AddTrust 2>>
+<<GrantOrgan "AstraCore">>
+<<SetAstraVisualState "unity">>
+
+Astra: "ASTRA CORE UNLOCKED."
+"Final synthesis... available. Sub-Level 0... three stations."
+"Chronos. Neural. Void. Gravity. Astra. Five... become one."
+"Ending... determined. Trust... and Memory... decide."
+
+<<SetEndingFlag "fracture_contained" true>>
+<<UnlockFastTravel "SubLevel0">>
+
+-> Phase_Shift_Return_Administration
+===
+
+title: Phase_Shift_Return_Administration
+---
+<<TriggerPhaseShift "Administration_DirectorsOffice">>
+<<SetTimeline "present">>
+<<PlaySequence "LS_PhaseShift_Administration_Office_Return">>
+
+Astra: "Present... Administration complete. Sub-Level 0... open."
+"Final synthesis... awaits. Three stations. Five organs. One choice."
+"Navigator... the *Chronos*... waits."
+
+-> Choice_Administration
+===

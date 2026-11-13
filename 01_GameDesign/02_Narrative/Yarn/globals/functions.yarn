@@ -1,0 +1,86 @@
+// Global Functions
+// ================
+
+<<function TrustLevel>>
+    <<return $trust>>
+<
+
+<<function MemoryFragments>>
+    <<return $memory_fragments>>
+<
+
+<<function OrgansRestored>>
+    <<return $organs_restored>>
+<
+
+<<function CurrentZone>>
+    <<return $current_zone>>
+<
+
+<<function CurrentTimeline>>
+    <<return $current_timeline>>
+<
+
+<<function HasVisitedVistaNode _nodeId>>
+    <<set _found = false>>
+    <<for _node in $visited_vista_nodes>>
+        <<if _node == _nodeId>>
+            <<set _found = true>>
+        <</if>>
+    <</for>>
+    <<return _found>>
+<
+
+<<function HasSolvedPuzzle _puzzleId>>
+    <<set _found = false>>
+    <<for _p in $solved_puzzles>>
+        <<if _p == _puzzleId>>
+            <<set _found = true>>
+        <</if>>
+    <</for>>
+    <<return _found>>
+<
+
+<<function GetResonance>>
+    <<return $resonance_currency>>
+<
+
+<<function CanAffordHint _cost>>
+    <<return $resonance_currency >= _cost>>
+<
+
+<<function GetEndingFlag _flag>>
+    <<return $ending_flags[_flag]>>
+<
+
+<<function GetAstraVisualState>>
+    <<return $astra_visual_state>>
+<
+
+<<function IsAccessibilityEnabled _feature>>
+    <<if _feature == "reduced_motion">>
+        <<return $accessibility_reduced_motion>>
+    <</if>>
+    <<if _feature == "instant_cuts">>
+        <<return $accessibility_instant_cuts>>
+    <</if>>
+    <<if _feature == "high_contrast">>
+        <<return $accessibility_high_contrast>>
+    <</if>>
+    <<if _feature == "dyslexic_font">>
+        <<return $accessibility_dyslexic_font>>
+    <</if>>
+    <<return false>>
+<
+
+<<function FormatTimestamp _iso>>
+    // Format ISO timestamp for UI display
+    // Implementation in C++ via Yarn function binding
+    <<return _iso>>
+<
+
+<<function Localize _key _default>>
+    // Returns localized string for key, fallback to default
+    // Implementation in C++ via Yarn function binding
+    <<return _default>>
+<

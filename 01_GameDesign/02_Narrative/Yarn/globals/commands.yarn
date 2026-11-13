@@ -1,0 +1,154 @@
+// Yarn Commands - Called from dialogue, bound to C++ functions
+// ===========================================================
+
+<<command SetTrust _value>>
+    // Set trust level (0-10), clamp, trigger events
+    // Bound to: AstraCompanion.SetTrust(_value)
+<
+
+<<command AddTrust _delta>>
+    // Add/subtract trust, clamp 0-10, trigger events
+    // Bound to: AstraCompanion.AddTrust(_delta)
+<
+
+<<command AddMemoryFragment _fragmentId>>
+    // Add fragment to collection, increment counter, play VFX
+    // Bound to: SaveSystem.AddMemoryFragment(_fragmentId)
+<
+
+<<command SetZone _zoneId>>
+    // Update current zone for fast travel, UI, puzzle context
+    // Bound to: TimelineManager.SetCurrentZone(_zoneId)
+<
+
+<<command SetTimeline _timeline>>
+    // "present" or "past" - drives world state
+    // Bound to: TimelineManager.SetTimeline(_timeline)
+<
+
+<<command MarkVistaNodeVisited _nodeId>>
+    // Add to visited array, enable fast travel
+    // Bound to: TimelineManager.ActivateVistaNode(_nodeId)
+<
+
+<<command MarkPuzzleSolved _puzzleId>>
+    // Add to solved array, grant rewards, trigger present changes
+    // Bound to: PuzzleManager.CompletePuzzle(_puzzleId)
+<
+
+<<command SetActivePuzzle _puzzleId>>
+    // Set for hint system, UI context
+    // Bound to: PuzzleManager.SetActivePuzzle(_puzzleId)
+<
+
+<<command ClearActivePuzzle>>
+    // Clear active puzzle
+    // Bound to: PuzzleManager.ClearActivePuzzle()
+<
+
+<<command AddResonance _amount>>
+    // Add currency, play sound/VFX
+    // Bound to: SaveSystem.AddResonance(_amount)
+<
+
+<<command SpendResonance _amount>>
+    // Spend currency (hints), fail if insufficient
+    // Bound to: SaveSystem.SpendResonance(_amount)
+<
+
+<<command GrantOrgan _organId>>
+    // "chronos" | "neural" | "void" | "gravity" | "astra"
+    // Unlocks ability, increments counter, plays cinematic
+    // Bound to: AbilitySystem.GrantOrganAbility(_organId)
+<
+
+<<command SetEndingFlag _flag _value>>
+    // Track ending-determining choices
+    // Bound to: SaveSystem.SetEndingFlag(_flag, _value)
+<
+
+<<command SetAstraVisualState _state>>
+    // "idle" | "scanning" | "memory" | "distress" | "unity"
+    // Drives Niagara + shader
+    // Bound to: AstraCompanion.SetVisualState(_state)
+<
+
+<<command TriggerPhaseShift _vistaNodeId>>
+    // Initiate phase shift at specific Vista Node
+    // Bound to: TimelineManager.RequestPhaseShift(_vistaNodeId)
+<
+
+<<command PlaySequence _sequenceName>>
+    // Play LevelSequence (cinematic)
+    // Bound to: LevelSequencePlayer.Play(_sequenceName)
+<
+
+<<command SetGameMode _mode>>
+    // "standard" | "accessibility" | "newgameplus"
+    // Bound to: GameMode.SetGameMode(_mode)
+<
+
+<<command SetAccessibility _feature _enabled>>
+    // Feature: "reduced_motion" | "instant_cuts" | "high_contrast" | "dyslexic_font"
+    // Bound to: SettingsManager.SetAccessibility(_feature, _enabled)
+<
+
+<<command SaveGame _slot>>
+    // Save to slot (1-10)
+    // Bound to: SaveSystem.SaveGame(_slot)
+<
+
+<<command LoadGame _slot>>
+    // Load from slot
+    // Bound to: SaveSystem.LoadGame(_slot)
+<
+
+<<command ShowJournal _tab>>
+    // Open journal to tab: "narrative" | "clues" | "map" | "settings"
+    // Bound to: UIManager.ShowJournal(_tab)
+<
+
+<<command HideJournal>>
+    // Close journal
+    // Bound to: UIManager.HideJournal()
+<
+
+<<command EnablePhotoMode>>
+    // Enter photo mode
+    // Bound to: PhotoModeManager.Enable()
+<
+
+<<command DisablePhotoMode>>
+    // Exit photo mode
+    // Bound to: PhotoModeManager.Disable()
+<
+
+<<command UnlockFastTravel _zoneId>>
+    // Enable fast travel to zone
+    // Bound to: TimelineManager.UnlockFastTravel(_zoneId)
+<
+
+<<command PlayAudioLog _logId>>
+    // Play voice-over log
+    // Bound to: AudioManager.PlayLog(_logId)
+<
+
+<<command StopAudioLog>>
+    // Stop current voice-over
+    // Bound to: AudioManager.StopLog()
+<
+
+<<command RevealClue _clueId>>
+    // Reveal clue in journal (from Astra Scan)
+    // Bound to: PuzzleManager.RevealClue(_clueId)
+<
+
+<<command PurchaseHint _hintTier>>
+    // Spend resonance for hint tier (1, 2, 3)
+    // Bound to: PuzzleManager.PurchaseHint(_hintTier)
+<
+
+<<command SetLanguage _lang>>
+    // Change localization language
+    // Bound to: LocalizationManager.SetLanguage(_lang)
+<

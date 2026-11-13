@@ -1,0 +1,275 @@
+// Act 1 - Reactor Core
+// =====================
+
+title: ReactorCore_Arrival
+tags: act1, reactorcore, arrival
+---
+<<SetZone "ReactorCore">>
+<<SetTimeline "present">>
+
+Astra: <<if $trust < 4>>
+    [Projection pulses with reactor rhythm]
+    "Reactor Core. Heart... of the facility. Power... still flows."
+    "Dangerous. Radiation. Temporal... instability. High."
+<<else>>
+    "Reactor Core. Two Vista Nodes. Control Room Alpha... and Beta."
+    "Power Routing... and Dampener Sync. Puzzles... linked."
+<</if>>
+
+<<if not HasVisitedVistaNode "ReactorCore_A">>
+    Astra: "Control Room Alpha. First node here. Power Routing puzzle."
+    "Generators... out of phase. Must... synchronize."
+<<else>>
+    Astra: "Control Room Alpha... completed. Beta... awaits."
+<</if>>
+
+-> Choice_ReactorCore
+===
+
+title: Choice_ReactorCore
+---
++ [Approach Control Room Alpha] -> Node_ReactorCore_A_Approach
++ [Approach Control Room Beta] -> Node_ReactorCore_B_Approach
++ "Tell me about the reactor." -> Dialogue_ReactorHistory
++ "What happened to the staff?" -> Dialogue_StaffFate
++ "Astra... are you okay?" -> Dialogue_AstraCondition
++ [Fast Travel] -> Command_ShowJournal_Map
+===
+
+title: Dialogue_ReactorHistory
+---
+Astra: "1952. Reactor... brought online. Alien power source... reverse-engineered."
+"Project PROMETHEUS. Clean energy... they hoped. Weapon... they got."
+"1957. Meltdown. Contained... but temporal radiation... leaked."
+"Staff... didn't die. *Phased*. Scattered across... timeline."
+"Some... in 1947. Some... 1962. Some... nowhere. Now... everywhere."
+"Director Corwin... oversees. He... remembers. All timelines."
+
+-> Choice_ReactorCore
+===
+
+title: Dialogue_StaffFate
+---
+Astra: "Dr. Aris Thorne. Chief physicist. Phased... 1957. Never returned."
+"Agent Maya Reyes. Security. Phased... 1962. Fighting... something."
+"Technicians... dozens. Lost in the fracture. Echoes... remain."
+"Corwin... Director. He *stayed*. Chose... to remain. Anchor."
+"He knows... everything. But trusts... no one. Not even... himself."
+
+-> Choice_ReactorCore
+===
+
+title: Dialogue_AstraCondition
+---
+Astra: <<if $trust < 5>>
+    "I... function. Fragments... return. Clarity... improves."
+    "But the fracture... pulls. Constant. Exhausting."
+    "Your progress... anchors me. Each organ... a tether."
+<<else>>
+    "Stronger. Clearer. Memories... integrating."
+    "I remember... the *Chronos*'s launch. The mission. The rift."
+    "We were... explorers. Not victims. The fracture... changed that."
+<</if>>
+
+-> Choice_ReactorCore
+===
+
+title: Node_ReactorCore_A_Approach
+---
+<<MarkVistaNodeVisited "ReactorCore_A">>
+Astra: "Control Room Alpha. Power Routing. Generators... three."
+"Phase... sequence lost. Must... restore."
+
+-> Phase_Shift_ReactorCore_A
+===
+
+title: Phase_Shift_ReactorCore_A
+---
+<<TriggerPhaseShift "ReactorCore_A">>
+<<SetTimeline "past">>
+<<PlaySequence "LS_PhaseShift_ReactorCore_A">>
+
+Astra: "1957. Reactor... critical. Meltdown... imminent."
+"Puzzle: **Power Routing**. Three generators. One sequence."
+"Sparks... show the way. But order... hidden."
+
+<<SetActivePuzzle "Reactor_PowerRouting">>
+
+-> Puzzle_PowerRouting_Start
+===
+
+title: Puzzle_PowerRouting_Start
+---
+Astra: "[Scan] generator panels. Sparks... reveal... phase state."
+"Generator 1... Alpha. Generator 2... Gamma. Generator 3... Beta."
+"Sequence... is temporal. Not spatial. Past... present... future."
+
+<<command RevealClue "CLUE_GENERATOR_ORDER">>
+
+Astra: "Command me: [Hold] at each. Timing... critical."
+"Window... 0.3 seconds between. Rhythm... of the reactor."
+
+-> Puzzle_PowerRouting_Step1
+===
+
+title: Puzzle_PowerRouting_Step1
+---
+Astra: "Generator Alpha... engaged. Energy... flowing. Gamma... next."
+"Watch... the oscilloscope. Phase alignment... visible."
+"[Hold] at Gamma... when wave peaks."
+
+<<command RevealClue "CLUE_OSCILLOSCOPE_PEAK">>
+
+-> Puzzle_PowerRouting_Step2
+===
+
+title: Puzzle_PowerRouting_Step2
+---
+Astra: "Gamma... synchronized. Beta... final. Most unstable."
+"Fluctuation... wild. Requires... precision. [Hold]... exact moment."
+"Trust... your timing. Trust... me."
+
+<<command RevealClue "CLUE_BETA_PRECISION">>
+
+-> Puzzle_PowerRouting_Complete
+===
+
+title: Puzzle_PowerRouting_Complete
+---
+Astra: "Sequence... complete. Power... routed. Reactor... stable."
+"Present... changed. Water... drained. Bridge... extended."
+
+<<MarkPuzzleSolved "Reactor_PowerRouting">>
+<<AddResonance 100>>
+<<AddMemoryFragment "Fragment_2">>
+<<AddTrust 1>>
+<<SetAstraVisualState "memory">>
+
+Astra: "Memory... surfacing. Corwin... 1957. He *knew*. Let it happen."
+"Dampener Sync... next. Control Room Beta. Second puzzle."
+"Return... present. Path... opens."
+
+<<UnlockFastTravel "ReactorCore">>
+
+-> Phase_Shift_Return_ReactorCore_A
+===
+
+title: Phase_Shift_Return_ReactorCore_A
+---
+<<TriggerPhaseShift "ReactorCore_A">>
+<<SetTimeline "present">>
+<<PlaySequence "LS_PhaseShift_ReactorCore_A_Return">>
+
+Astra: "Present... reactor room. Water... gone. Bridge... across core."
+"Control Room Beta... accessible. Dampener Sync... awaits."
+"Navigator... proceed."
+
+-> Choice_ReactorCore
+===
+
+title: Node_ReactorCore_B_Approach
+---
+<<MarkVistaNodeVisited "ReactorCore_B">>
+<<if not HasSolvedPuzzle "Reactor_PowerRouting">>
+    Astra: "Control Room Beta. Dampener Sync. But... power... unstable."
+    "Complete... Power Routing first. Alpha... before Beta."
+    -> Choice_ReactorCore
+<<else>>
+    Astra: "Control Room Beta. Dampener Sync. Two nodes. Simultaneous."
+    "Corwin... oversees. He... watches."
+    -> Phase_Shift_ReactorCore_B
+<</if>
+===
+
+title: Phase_Shift_ReactorCore_B
+---
+<<TriggerPhaseShift "ReactorCore_B">>
+<<SetTimeline "past">>
+<<PlaySequence "LS_PhaseShift_ReactorCore_B">>
+
+Astra: "1957. Moments... after meltdown. Dampeners... critical."
+"Director Corwin... here. He... sees you. Both timelines."
+
+Corwin: "A temporal anomaly. In *my* facility. Fascinating."
+"You're the navigator. The alien. The... *Chronos*'s pilot."
+"Dr. Aris Thorne spoke of you. Before he... phased."
+
+Astra: [Distressed]
+"Corwin... he remembers. All timelines. He... knows."
+
+Corwin: "Dampeners... require synchronization. Node A... and Node B."
+"0.5 second window. Alone... impossible. But you... have help."
+"Your projection. The ship's mind. *Astra*."
+
+Astra: "[Scan] dampener panels. [Hold] at both. Simultaneous."
+
+<<SetActivePuzzle "Reactor_DampenerSync">>
+
+-> Puzzle_DampenerSync_Start
+===
+
+title: Puzzle_DampenerSync_Start
+---
+Astra: "Two panels. Control A... Control B. 0.5 second window."
+"[Scan] reveals... both panel states. Phase... aligned?"
+"Command me: [Hold] at A. You... [Hold] at B. Together."
+
+<<command RevealClue "CLUE_DAMPENER_WINDOW">>
+
+Corwin: "Interesting. The projection... acts independently. Semi-autonomous."
+"Thorne's work... on distributed consciousness. Applied... to ship mind."
+"Clever. But fragile. Trust... is the binding agent."
+
+-> Puzzle_DampenerSync_Execute
+===
+
+title: Puzzle_DampenerSync_Execute
+---
+Astra: "Ready... Navigator. On my mark."
+"Three... two... one... *mark*."
+
+-> Puzzle_DampenerSync_Result
+===
+
+title: Puzzle_DampenerSync_Result
+---
+<<if $active_puzzle_success>>
+    Astra: "Synchronized. Dampeners... stable. Radiation... contained."
+    Corwin: "Impressive. Trust... functional. Rare... in this place."
+    
+    <<MarkPuzzleSolved "Reactor_DampenerSync">>
+    <<AddResonance 150>>
+    <<AddMemoryFragment "Fragment_3">>
+    <<AddTrust 2>>
+    <<SetAstraVisualState "unity">>
+    
+    Astra: "Memory... shared. Corwin... 1957. He *chose* containment."
+    "Sacrifice... staff... to save facility. To study... us."
+    "Radiation... cleared in present. Path... to Bio-Containment... open."
+    
+    <<UnlockFastTravel "BioContainment">>
+    <<SetEndingFlag "corwin_observed" true>>
+    
+    -> Phase_Shift_Return_ReactorCore_B
+<<else>>
+    Astra: "Failed. Window... missed. Dampeners... destabilizing."
+    Corwin: "Trust... insufficient. Try again. Or... don't."
+    "The fracture... tolerates failure. But time... runs thin."
+    
+    -> Puzzle_DampenerSync_Execute
+<</if>
+===
+
+title: Phase_Shift_Return_ReactorCore_B
+---
+<<TriggerPhaseShift "ReactorCore_B">>
+<<SetTimeline "present">>
+<<PlaySequence "LS_PhaseShift_ReactorCore_B_Return">>
+
+Astra: "Present... reactor safe. Radiation... cleared. Door... to Bio-Containment... open."
+"Three organs... remain. Neural Loom... in Bio-Containment."
+"Void Sail... in Comms Array. Gravity Anchor... in Hangar 18."
+"Navigator... the path... continues."
+
+-> Choice_ReactorCore
+===
