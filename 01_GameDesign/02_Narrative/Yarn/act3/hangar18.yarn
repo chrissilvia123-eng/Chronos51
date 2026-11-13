@@ -1,0 +1,313 @@
+// Act 3 - Hangar 18, Administration, Sub-Level 0
+// ==============================================
+
+title: Hangar18_Arrival
+tags: act3, hangar18, arrival
+---
+<<SetZone "Hangar18">>
+<<SetTimeline "present">>
+
+Astra: <<if $trust < 9>>
+    [Projection shimmers with gravity distortion]
+    "Hangar 18. Stasis... bay. Extraction... pod. Gravity... unstable."
+    "Gravity Anchor... here. Final organ. Wall run. Gravity... shift."
+<<else>>
+    "Hangar 18. Two Vista Nodes. Stasis Bay... Extraction Pod."
+    "Gravity Calibration... and Stasis Recovery. Puzzles... linked."
+<</if>>
+
+<<if not HasVisitedVistaNode "Hangar18_StasisBay">>
+    Astra: "Stasis Bay. First node. Gravity Calibration puzzle."
+    "Four anchor emitters. Tetrahedral... pattern. Stabilize... field."
+<<else>>
+    Astra: "Stasis Bay... complete. Extraction Pod... awaits."
+<</if>>
+
+-> Choice_Hangar18
+===
+
+title: Choice_Hangar18
+---
++ [Approach Stasis Bay] -> Node_Hangar18_StasisBay_Approach
++ [Approach Extraction Pod] -> Node_Hangar18_ExtractionPod_Approach
++ "Who is in stasis?" -> Dialogue_StasisCrew
++ "Tell me about the Gravity Anchor." -> Dialogue_GravityAnchor
++ "Corwin... he's here, isn't he?" -> Dialogue_CorwinHangar
++ [Fast Travel] -> Command_ShowJournal_Map
+===
+
+title: Dialogue_StasisCrew
+---
+Astra: "1957. Meltdown survivors. Three... crew members."
+"Phased... not dead. Suspended... in stasis. Waiting."
+"Thorne... placed them here. Hoped... for rescue."
+"Reyes... guarded them. Died... 1962. Fighting... something."
+"Revive them... Gravity Anchor... required. Chrono-resonance... frequency."
+
+-> Choice_Hangar18
+===
+
+title: Dialogue_GravityAnchor
+---
+Astra: "Gravity Anchor... fourth organ. Reality... anchor. Wall run. Gravity... shift."
+"Walk... walls. Ceiling. Fall... up. Reverse... gravity."
+"In past... reach... Extraction Pod launch. In present... traverse... Sub-Level 0."
+"Chronos Core... time. Neural Loom... memory. Void Sail... freedom."
+"Gravity Anchor... *agency*. Choose... your direction."
+
+-> Choice_Hangar18
+===
+
+title: Dialogue_CorwinHangar
+---
+Astra: "Corwin... here. 1957. Stasis Bay. He... watches."
+"1962. Extraction Pod. He... launches. Or... stops."
+"All timelines... he sees. All choices... he knows."
+"He waits... for you. For *us*. The Navigator... and the Ship."
+"Trust... him? The choice... determines... the ending."
+
+-> Choice_Hangar18
+===
+
+title: Node_Hangar18_StasisBay_Approach
+---
+<<MarkVistaNodeVisited "Hangar18_StasisBay">>
+Astra: "Stasis Bay. Gravity field... unstable. Four emitters."
+"Tetrahedral pattern. Target stability... 95%."
+
+-> Phase_Shift_Hangar18_StasisBay
+===
+
+title: Phase_Shift_Hangar18_StasisBay
+---
+<<TriggerPhaseShift "Hangar18_StasisBay">>
+<<SetTimeline "past">>
+<<PlaySequence "LS_PhaseShift_Hangar18_StasisBay">>
+
+Astra: "1957. Post-meltdown. Gravity field... collapsing."
+"Puzzle: **Gravity Anchor Calibration**. Stabilize... emitters."
+"[Hold] each emitter. Pattern... tetrahedral. Phase lock... required."
+
+<<SetActivePuzzle "Hangar18_GravityCalibration">>
+
+-> Puzzle_GravityCalibration_Start
+===
+
+title: Puzzle_GravityCalibration_Start
+---
+Astra: "[Hold] Emitter 1. Base vertex. Gravity... down."
+"[Hold] Emitter 2. Vertex. Gravity... 109.5° offset."
+"[Hold] Emitter 3. Vertex. Gravity... 109.5° offset."
+"[Hold] Emitter 4. Apex. Gravity... up."
+"Simultaneous... phase lock. Astra... assists."
+
+<<command RevealClue "CLUE_GRAVITY_FIELD">>
+
+Corwin: [At emitter console]
+"Gravity Anchor... the most dangerous organ. Reality... bends."
+"Thorne feared it. Reyes... respected it. I... *use* it."
+"Stabilize... the field. Or... watch it tear... this facility apart."
+
+-> Puzzle_GravityCalibration_Emitters
+===
+
+title: Puzzle_GravityCalibration_Emitters
+---
+Astra: "Emitters 1-3... synchronized. Emitter 4... apex. Final."
+"[Hold] at Apex. Phase lock... complete. Field... stable."
+
+// Player executes Hold at Emitter 4
+<<command RevealClue "CLUE_EXTRACTION_TRAJECTORY">>
+
+Astra: "Field... stable. Extraction Pod... launch sequence... ready."
+"Angle: 42.5°. Velocity: 1200. Gravity assist... engaged."
+"Command me: [Follow] pod trajectory. Guide... launch."
+
+-> Puzzle_GravityCalibration_Extraction
+===
+
+title: Puzzle_GravityCalibration_Extraction
+---
+Astra: "[Follow] engaged. Tracking... pod. Gravity assist... active."
+"Trajectory... nominal. Window... 2.0 seconds. Adjust... if needed."
+
+// Player executes Follow - Astra guides pod
+<<command RevealClue "CLUE_ANCHOR_SYNC">>
+
+Astra: "Pod... launched. Gravity Anchor... calibrated. But... synchronization... required."
+"Both nodes. Stasis Bay... and Extraction Pod. Phase lock... across... distance."
+"Command me: [Hold] at Extraction Pod. You... [Hold] at Stasis Bay."
+"Simultaneous. Trust... absolute."
+
+-> Phase_Shift_Hangar18_ExtractionPod
+===
+
+title: Phase_Shift_Hangar18_ExtractionPod
+---
+<<TriggerPhaseShift "Hangar18_ExtractionPod">>
+<<SetTimeline "past">>
+<<PlaySequence "LS_PhaseShift_Hangar18_ExtractionPod">>
+
+Astra: "Extraction Pod. 1957. Launch... successful. Or... not."
+"Puzzle: **Anchor Synchronization**. Phase lock... both nodes."
+"[Hold] at Pod console. Astra... [Hold] at Stasis Bay console."
+"Window... 0.5 seconds. Across... facility."
+
+-> Puzzle_AnchorSync_Execute
+===
+
+title: Puzzle_AnchorSync_Execute
+---
+Astra: "Ready... Navigator. On my mark."
+"Three... two... one... *mark*."
+
+// Simultaneous Hold at both nodes
+
+Corwin: [At Pod console]
+"Simultaneous phase lock... across 2 kilometers. Impressive."
+"The Anchor... binds spacetime. Not just... gravity."
+"Your ship... the *Chronos*. It *is* an Anchor. Planetary... scale."
+"You're not just... restoring organs. You're... *rebuilding a ship*."
+
+-> Puzzle_AnchorSync_Result
+===
+
+title: Puzzle_AnchorSync_Result
+---
+<<if $active_puzzle_success>>
+    Astra: "Synchronized. Gravity Anchor... stable. Reality... anchored."
+    "Present... changed. Gravity... stable. Platform... extended."
+    
+    <<MarkPuzzleSolved "Hangar18_GravityCalibration">>
+    <<AddResonance 300>>
+    <<AddMemoryFragment "Fragment_10">>
+    <<AddMemoryFragment "Fragment_11">>
+    <<AddTrust 2>>
+    <<GrantOrgan "GravityAnchor">>
+    <<SetAstraVisualState "unity">>
+    
+    Astra: "GRAVITY ANCHOR RESTORED."
+    "Wall run... unlocked. Gravity shift... unlocked. Reality... yours."
+    "All four organs... restored. Sub-Level 0... accessible."
+    
+    <<SetEndingFlag "gravity_anchor_restored" true>>
+    <<UnlockFastTravel "Administration">>
+    <<UnlockFastTravel "SubLevel0">>
+    
+    -> Phase_Shift_Return_Hangar18_ExtractionPod
+<<else>>
+    Astra: "Failed. Phase lock... lost. Gravity... destabilizing."
+    "Try again. Trust... the anchor."
+    
+    -> Puzzle_AnchorSync_Execute
+<</if>
+===
+
+title: Phase_Shift_Return_Hangar18_ExtractionPod
+---
+<<TriggerPhaseShift "Hangar18_ExtractionPod">>
+<<SetTimeline "present">>
+<<PlaySequence "LS_PhaseShift_Hangar18_ExtractionPod_Return">>
+
+Astra: "Present... Hangar 18 stable. Gravity... anchored."
+"Stasis Recovery... next. Revive... the crew."
+"Then... Administration. Director's Authorization."
+"Sub-Level 0... awaits. The synthesis... begins."
+
+-> Choice_Hangar18
+===
+
+title: Node_Hangar18_ExtractionPod_Approach
+---
+<<MarkVistaNodeVisited "Hangar18_ExtractionPod">>
+<<if not HasSolvedPuzzle "Hangar18_GravityCalibration">>
+    Astra: "Extraction Pod. Stasis Recovery. But... Gravity Calibration... incomplete."
+    "Complete... Stasis Bay first. Anchor... before revival."
+    -> Choice_Hangar18
+<<else>>
+    Astra: "Extraction Pod. Stasis Recovery Protocol. Three pods. Chrono-resonance."
+    "Simultaneous... revival. Neural Loom... frequency. Chronos Core... timing."
+    -> Phase_Shift_Hangar18_StasisRecovery
+<</if>
+===
+
+title: Phase_Shift_Hangar18_StasisRecovery
+---
+<<TriggerPhaseShift "Hangar18_ExtractionPod">>
+<<SetTimeline "past">>
+<<PlaySequence "LS_PhaseShift_Hangar18_ExtractionPod">>
+
+Astra: "1957. Stasis pods... viable. Revival... possible."
+"Puzzle: **Stasis Recovery Protocol**. Three pods. Simultaneous."
+"Frequency... Chronos Core. Sequence... Neural Loom. Power... Void Sail."
+
+<<SetActivePuzzle "Hangar18_StasisRecovery">>
+
+-> Puzzle_StasisRecovery_Start
+===
+
+title: Puzzle_StasisRecovery_Start
+---
+Astra: "[Scan] Pod 1. Vitals... stable. Neural... intact."
+"[Scan] Pod 2. Vitals... stable. Neural... intact."
+"[Scan] Pod 3. Vitals... critical. Neural... fragmented."
+"Command me: [Hold] at each pod. Chrono-resonance... simultaneous."
+"All four organs... engaged. Trust... total."
+
+<<command RevealClue "CLUE_STASIS_VITALS">>
+
+Corwin: [Observing]
+"Reviving... the lost. Thorne's work... completed. By *you*."
+"Subject 3... Thorne's assistant. Subject 7... Reyes's protégé."
+"Subject 12... *my* choice. The one... I couldn't save."
+"Watch... closely. This... changes things."
+
+-> Puzzle_StasisRecovery_Execute
+===
+
+title: Puzzle_StasisRecovery_Execute
+---
+Astra: "Chronos Core... time dilation. Neural Loom... memory bridge."
+"Void Sail... dimensional bridge. Gravity Anchor... reality anchor."
+"Four organs... one resonance. Revival... initiating."
+"[Hold] Pod 1. [Hold] Pod 2. [Hold] Pod 3. Simultaneous."
+
+// Player and Astra Hold at all three pods simultaneously
+
+-> Puzzle_StasisRecovery_Complete
+===
+
+title: Puzzle_StasisRecovery_Complete
+---
+Astra: "Revival... complete. Crew... awake. Testimony... recorded."
+"Present... changed. Crew testimony... unlocked. Administration... path... clear."
+
+<<MarkPuzzleSolved "Hangar18_StasisRecovery">>
+<<AddResonance 250>>
+<<AddMemoryFragment "Fragment_12">>
+<<AddTrust 1>>
+<<SetAstraVisualState "memory">>
+
+Astra: "Final memory fragment... recovered. All 12... collected."
+"Crew... testify. Corwin's... choices. Thorne's... sacrifice. Reyes's... duty."
+"Trust... maximum. Memory... complete."
+"Sub-Level 0... the synthesis... awaits."
+
+<<SetEndingFlag "stasis_crew_revived" true>>
+
+-> Phase_Shift_Return_Hangar18_StasisRecovery
+===
+
+title: Phase_Shift_Return_Hangar18_StasisRecovery
+---
+<<TriggerPhaseShift "Hangar18_ExtractionPod">>
+<<SetTimeline "present">>
+<<PlaySequence "LS_PhaseShift_Hangar18_ExtractionPod_Return">>
+
+Astra: "Present... crew revived. Testimony... in journal."
+"Four organs. Twelve fragments. Trust... high."
+"Administration... Director's Authorization. Then... Sub-Level 0."
+"Navigator... the end... begins."
+
+-> Choice_Hangar18
+===

@@ -1,0 +1,65 @@
+# Chronos 51 — Main Repository .gitignore
+# Generated 2026-11-13
+
+# UE5 Project (has its own .gitignore)
+05_UE5_Project/Chronos51/Build/
+05_UE5_Project/Chronos51/Binaries/
+05_UE5_Project/Chronos51/DerivedDataCache/
+05_UE5_Project/Chronos51/Intermediate/
+05_UE5_Project/Chronos51/Saved/
+05_UE5_Project/Chronos51/.vs/
+05_UE5_Project/Chronos51/.vscode/
+05_UE5_Project/Chronos51/*.sln
+05_UE5_Project/Chronos51/*.vcxproj*
+05_UE5_Project/Chronos51/*.csproj
+05_UE5_Project/Chronos51/*.suo
+05_UE5_Project/Chronos51/*.user
+05_UE5_Project/Chronos51/*.log
+
+# Blender Pipeline
+06_Blender_Pipeline/exports/
+06_Blender_Pipeline/*/exports/
+*.blend1
+*.blend2
+*_recover.blend
+
+# OS
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# IDE
+.idea/
+*.iml
+.vscode/
+*.swp
+*~
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+.env
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Secrets
+*.key
+*.pem
+*.p12
+*.pfx
+secrets.*
+.env.local
+.env.*.local
+
+# Temporary
+*.tmp
+*.temp
+*.bak
+*.cache

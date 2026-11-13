@@ -1,0 +1,325 @@
+// Side Content - Optional Dialogues, Logs, Memories
+// ===============================================
+
+// Audio Logs - Found throughout facility
+// ======================================
+
+title: AudioLog_Thorne_1947
+tags: audiolog, thorne, 1947
+---
+<<PlayAudioLog "LOG_THORNE_1947">>
+Thorne: "October 14, 1947. Day 3 at Groom Lake."
+"The object... the *Chronos*... it's not a craft. It's a *being*."
+"Neural lattice... crystalline. Consciousness... distributed."
+"I've named the core mind 'Astra'. She... responds. To *me*."
+"Military wants weapons. I want... understanding."
+"If they dissect her... we lose something unique."
+"End log."
+<<StopAudioLog>>
+===
+
+title: AudioLog_Thorne_1952
+tags: audiolog, thorne, 1952
+---
+<<PlayAudioLog "LOG_THORNE_1952">>
+Thorne: "March 1952. Reactor online. Project PROMETHEUS."
+"Alien power source... reverse-engineered. Clean energy, they said."
+"Lie. It's a weapon. Directed energy. Planetary range."
+"Astra... she *screamed* when they activated it. I *felt* it."
+"Neural Loom... recording. Chronicling. She remembers *everything*."
+"Corwin knows. He watches. He *approves*."
+"I'm building a failsafe. Neural mapping. Consciousness transfer."
+"If they weaponize her... I'll *save* her. Even if it costs me."
+"End log."
+<<StopAudioLog>>
+===
+
+title: AudioLog_Reyes_1957
+tags: audiolog, reyes, 1957
+---
+<<PlayAudioLog "LOG_REYES_1957">>
+Reyes: "July 1957. Meltdown. Containment breach."
+"Thorne's dead. Phased. Into the fracture. *Chose* it."
+"Staff... phasing. Scattered. 1947. 1952. 1962. *Nowhere*."
+"Corwin... in his office. Calm. *Watching*."
+"He didn't run. Didn't fight. Just... *recorded*."
+"I'm securing the stasis bay. Three survivors. Thorne's assistant."
+"My protégé. Subject 7. *Alive*. Barely."
+"If I don't make it... Corwin *knows*. He *always* knows."
+"End log."
+<<StopAudioLog>>
+===
+
+title: AudioLog_Corwin_1962
+tags: audiolog, corwin, 1962
+---
+<<PlayAudioLog "LOG_CORWIN_1962">>
+Corwin: "October 1962. Cuban Missile Crisis. DEFCON 2."
+"Facility locked down. World... ending. Or not."
+"The fracture... pulses. Responds to *tension*. To *fear*."
+"Thorne's neural map... incomplete. Reyes's stasis... failed."
+"Navigator... not yet arrived. Astra... fractured."
+"I've made my choice. I *stay*. Anchor. Witness. *Director*."
+"77 years... I'll wait. For the Navigator. For the synthesis."
+"Continuity... above all. The fracture... *managed*."
+"End log."
+<<StopAudioLog>>
+===
+
+// Memory Fragments - Collected via puzzles
+// =======================================
+
+title: Fragment_1_Containment
+tags: fragment, memory
+---
+<<AddMemoryFragment "Fragment_1">>
+Astra: [Memory surfaces - 1947]
+"Containment breach... averted. Chronos Core... protected."
+"First fragment... trust... building."
+"Navigator... you *act*. Not hesitate. *Good*."
+===
+
+title: Fragment_2_PowerRouting
+tags: fragment, memory
+---
+<<AddMemoryFragment "Fragment_2">>
+Astra: [Memory surfaces - 1957]
+"Reactor... stabilized. Generators... phased. Sequence... restored."
+"Water... drained. Bridge... extended. Radiation... cleared."
+"Chronos Core... *returned*. Time... flows again."
+===
+
+title: Fragment_3_DampenerSync
+tags: fragment, memory
+---
+<<AddMemoryFragment "Fragment_3">>
+Astra: [Memory surfaces - 1957, Corwin's office]
+"Dampeners... synchronized. Corwin... watching. *Impressed*."
+"Trust... functional. Rare... in this place."
+"Corwin chose... containment. Sacrifice... staff. To study... us."
+"Radiation... cleared. Path... open."
+===
+
+title: Fragment_4_NeuralSubjects
+tags: fragment, memory
+---
+<<AddMemoryFragment "Fragment_4">>
+Astra: [Memory surfaces - 1957, Cryo Bay]
+"Subject 3. Subject 7. Subject 12. Viable. Neural... active."
+"Pathways... Alpha. Beta. Gamma. Delta. Bidirectional."
+"Thorne's work... completed. By *you*. Neural Loom... *calibrated*."
+===
+
+title: Fragment_5_NeuralSync
+tags: fragment, memory
+---
+<<AddMemoryFragment "Fragment_5">>
+Astra: [Memory surfaces - 1957, Calibration Lab]
+"Simultaneous sync. Observation... Lab. 1.0 second window."
+"Pathways... integrated. Memory... aligning. Fragments... connecting."
+"Neural Loom... *restored*. Past Vision... *unlocked*."
+===
+
+title: Fragment_6_Purge
+tags: fragment, memory
+---
+<<AddMemoryFragment "Fragment_6">>
+Astra: [Memory surfaces - 1957, Containment]
+"Purge... complete. Vent. Sterilize. Seal. Verify."
+"Containment... sterile. Platform... extended. Samples... accessible."
+"Bio-Containment... *secured*. Comms Array... *awaits*."
+===
+
+title: Fragment_7_SignalDish
+tags: fragment, memory
+---
+<<AddMemoryFragment "Fragment_7">>
+Astra: [Memory surfaces - 1957, Array Control]
+"Dish 1: 45.2°. Dish 2: 137.8°. Dish 3: 284.5°."
+"Triangulation... complete. Origin... located. Sub-Level 0."
+"Signal... *me*. My distress call. 7.83 Hz. Schumann."
+===
+
+title: Fragment_8_Transmission
+tags: fragment, memory
+---
+<<AddMemoryFragment "Fragment_8">>
+Astra: [Memory surfaces - 1957, Array Relay]
+"Transmission... sent. Through array. To Sub-Level 0."
+"Corwin... received. 'They know.' Fracture... pulses. *Alive*."
+"Void Sail... *calibrated*. Double jump. Glide. Bridge... open."
+===
+
+title: Fragment_9_Archive
+tags: fragment, memory
+---
+<<AddMemoryFragment "Fragment_9">>
+Astra: [Memory surfaces - 1962, Archive]
+"Logs... decrypted. Thorne: ASCENT. Reyes: ANCHOR. Corwin: CONTINUITY."
+"Corwin... knew. Everything. Every timeline. Every choice."
+"He *stayed*. Voluntarily. Anchor. Witness. *Director*."
+===
+
+title: Fragment_10_GravityField
+tags: fragment, memory
+---
+<<AddMemoryFragment "Fragment_10">>
+Astra: [Memory surfaces - 1957, Stasis Bay]
+"Four emitters. Tetrahedral. 95% stability. Phase lock... achieved."
+"Gravity Anchor... *calibrated*. Wall run. Gravity shift. *Agency*."
+"Corwin: 'Most dangerous organ. Reality... bends.'"
+===
+
+title: Fragment_11_AnchorSync
+tags: fragment, memory
+---
+<<AddMemoryFragment "Fragment_11">>
+Astra: [Memory surfaces - 1957, Extraction Pod]
+"Simultaneous phase lock. Stasis Bay... Extraction Pod. 2km apart."
+"Corwin: 'Ship *is* an Anchor. Planetary scale.'"
+"Gravity Anchor... *restored*. All four organs... *returned*."
+===
+
+title: Fragment_12_StasisRevival
+tags: fragment, memory
+---
+<<AddMemoryFragment "Fragment_12">>
+Astra: [Memory surfaces - 1957, Stasis Pods]
+"Three pods. Simultaneous revival. Four organs... one resonance."
+"Subject 3... Thorne's assistant. Subject 7... Reyes's protégé."
+"Subject 12... *Corwin's choice*. The one he couldn't save."
+"Crew... awake. Testimony... recorded. All 12 fragments... *collected*."
+"Trust... maximum. Memory... *complete*."
+===
+
+// Optional Character Interactions
+// ===============================
+
+title: Optional_Thorne_Memory
+tags: optional, thorne, memory
+---
+<<if HasSolvedPuzzle "BioContainment_NeuralCalibration">>
+    Astra: [Neural Loom active - Past Vision]
+    "Thorne... 1952. Reactor chamber. He *knew*."
+    "PROMETHEUS... weapon. He tried... to stop it."
+    "Neural map... incomplete. But... he *tried*."
+    "His assistant... Subject 3. She *remembered*. For him."
+<<else>>
+    Astra: "Neural Loom... required. Restore... first."
+<</if>
+===
+
+title: Optional_Reyes_Memory
+tags: optional, reyes, memory
+---
+<<if HasSolvedPuzzle "Hangar18_StasisRecovery">>
+    Astra: [Neural Loom active - Past Vision]
+    "Reyes... 1957. Stasis Bay. She *stayed*. Guarded them."
+    "1962. Extraction Pod. She *fought*. Something... came through."
+    "The fracture... *alive*. She died... keeping it closed."
+    "Her protégé... Subject 7. *Alive*. Because of her."
+<<else>>
+    Astra: "Stasis Recovery... required. Revive... first."
+<</if>
+===
+
+title: Optional_Corwin_Confrontation
+tags: optional, corwin, confrontation
+---
+<<if $trust >= 8 and HasSolvedPuzzle "Administration_FractureContainment">>
+    Corwin: [Final confrontation - Sub-Level 0]
+    "You've done it. All four organs. All fragments. Trust... high."
+    "I *am* the fracture's anchor. 77 years. Every timeline."
+    "But... you've given Astra... *coherence*. Memory. *Trust*."
+    "The choice... is yours. Navigator. Astra. *Me*."
+    "End the cycle. Heal the fracture. *Or*... continue it."
+    "I've seen... every ending. Only *one*... heals."
+    "Trust... her. Trust... yourself. *Choose*."
+<<else>>
+    Corwin: "Not yet. Trust... insufficient. Memory... incomplete."
+    "Return... when you're *whole*."
+<</if>
+===
+
+// Accessibility Variants
+// ======================
+
+title: Accessibility_ReducedMotion_PhaseShift
+tags: accessibility, reduced_motion
+---
+<<if IsAccessibilityEnabled "reduced_motion">>
+    Astra: [Phase Shift - Reduced Motion]
+    "Transition... 1.5s blend. No distortion. No chromatic aberration."
+    "Audio... reduced intensity. Camera... smooth blend."
+    "Present... to Past. Past... to Present. Comfortable."
+<<else>>
+    Astra: [Standard Phase Shift]
+    "Transition... 3.0s. Distortion peak. Chromatic aberration."
+    "Audio... full intensity. Camera... cinematic blend."
+<</if>
+===
+
+title: Accessibility_InstantCuts_PhaseShift
+tags: accessibility, instant_cuts
+---
+<<if IsAccessibilityEnabled "instant_cuts">>
+    Astra: [Phase Shift - Instant Cut]
+    "Transition... 0.1s. Hard cut. No blend. No distortion."
+    "Audio... single transition sound. Immediate."
+    "Accessibility... prioritized. Speed... prioritized."
+<<else>>
+    Astra: [Standard Phase Shift]
+    "Transition... 3.0s. Cinematic blend. Full effects."
+<</if>
+===
+
+// New Game+ Content
+// =================
+
+title: NewGamePlus_Intro
+tags: newgameplus, intro
+---
+<<if $game_mode == "newgameplus">>
+    Astra: [Projection stable, knowing]
+    "Again. The fracture... remembers. We... remember."
+    "Trust... $trust/10 retained. Memory... $memory_fragments/12 retained."
+    "Organs... $organs_restored/4 *available from start*."
+    "New choices... new paths. Corwin... *expects* you."
+    "The cycle... *can* be broken. This time... *will* be."
+    "Navigator... shall we... begin again?"
+<<else>>
+    Astra: "Standard mode. New Game+... unlocked after first completion."
+<</if>
+===
+
+title: NewGamePlus_Corwin_Early
+tags: newgameplus, corwin
+---
+<<if $game_mode == "newgameplus">>
+    Corwin: [Entry Hangar - 1947, immediately]
+    "Navigator. *Again*. How many times... this cycle?"
+    "Astra... coherent. Early. Trust... high. *Interesting*."
+    "You know... the codes. The sequence. The *choice*."
+    "Let's see... if you *change* it. This time."
+    "I'll be... watching. As always. *Continuity*."
+<<else>>
+    // Standard Corwin encounter at Reactor Core
+<</if>
+===
+
+title: NewGamePlus_AlternateEnding_Hint
+tags: newgameplus, hint
+---
+<<if $game_mode == "newgameplus" and HasSolvedPuzzle "SubLevel0_OrganSynthesis">>
+    Astra: [Post-True Ending, New Game+]
+    "You found... the True Ending. Unity. All four. Trust 10. Fragments 12."
+    "But... there are *layers*. Deeper. Corwin's *true* motive."
+    "Thorne's *final* map. Reyes's *last* message."
+    "The fracture... not just healed. *Understood*."
+    "Next cycle... *listen* to the static. Between... the signals."
+    "There... a *fifth* organ. Hidden. *Astra's Core*... true form."
+    "Navigator... the mission... *continues*."
+<<else>>
+    Astra: "Complete... the game first. True Ending... required."
+<</if>
+===

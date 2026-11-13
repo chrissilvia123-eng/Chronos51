@@ -1,0 +1,275 @@
+// Act 3 - Sub-Level 0 (Final)
+// ===========================
+
+title: SubLevel0_Arrival
+tags: act3, sublevel0, arrival
+---
+<<SetZone "SubLevel0">>
+<<SetTimeline "present">>
+
+Astra: [Projection radiant, unified]
+"Sub-Level 0. The *Chronos*'s heart. Ship core... buried. Fractured."
+"Three synthesis stations. A... B... C. Final... sequence."
+"Five organs. One ship. One consciousness. One... choice."
+
+-> Choice_SubLevel0
+===
+
+title: Choice_SubLevel0
+---
++ [Approach Synthesis Station A] -> Node_SubLevel0_A_Approach
++ [Approach Synthesis Station B] -> Node_SubLevel0_B_Approach
++ [Approach Synthesis Station C] -> Node_SubLevel0_C_Approach
++ "What happens after synthesis?" -> Dialogue_AfterSynthesis
++ "Astra... are you ready?" -> Dialogue_AstraReady
++ [Check Ending Status] -> Command_ShowJournal_Narrative
+===
+
+title: Dialogue_AfterSynthesis
+---
+Astra: "Synthesis... restores the *Chronos*. Heals... the fracture."
+"Ship... whole. Consciousness... unified. Navigation... restored."
+"We can... leave. This timeline. This facility. This... prison."
+"Return... to our mission. Explore. Discover. *Remember*."
+"But... the ending... depends on Trust. And Memory."
+"Four paths. One... true."
+
+-> Choice_SubLevel0
+===
+
+title: Dialogue_AstraReady
+---
+Astra: "Ready? I have *waited* 77 years."
+"Every fragment... every organ... every puzzle... led here."
+"Trust... $trust/10. Memory... $memory_fragments/12."
+"Organs... $organs_restored/4."
+"I am... as ready as I will ever be."
+"Are *you*?"
+
+-> Choice_SubLevel0
+===
+
+title: Node_SubLevel0_A_Approach
+---
+<<MarkVistaNodeVisited "SubLevel0_SynthesisA">>
+Astra: "Station A. Chronos Core synthesis. Temporal Anchor. 7.83 Hz. 15 seconds."
+
+-> Phase_Shift_SubLevel0_A
+===
+
+title: Phase_Shift_SubLevel0_A
+---
+<<TriggerPhaseShift "SubLevel0_SynthesisA">>
+<<SetTimeline "past">>
+<<PlaySequence "LS_PhaseShift_SubLevel0_A">>
+
+Astra: "Sub-Level 0. The moment of synthesis. Station A."
+"Puzzle: **Organ Synthesis - Chronos Core**. Temporal Anchor."
+"Resonance... 7.83 Hz. Schumann. Earth's heartbeat."
+"Duration... 15 seconds. [Hold]... maintain."
+
+<<SetActivePuzzle "SubLevel0_OrganSynthesis">>
+
+-> Puzzle_Synthesis_Chronos
+===
+
+title: Puzzle_Synthesis_Chronos
+---
+Astra: "[Hold] at Station A. Chronos Core... engaging."
+"Time... anchoring. Fracture... stabilizing. Past... present... future... aligning."
+"15 seconds... maintain resonance. Do not... break."
+
+// Player executes Hold for 15 seconds
+// VFX: Time dilation field expanding
+
+Corwin: [Voice across all timelines]
+"Chronos Core... the heart. Time... bound. First organ... synthesized."
+"Three... remain. Navigator... continue."
+
+-> Puzzle_Synthesis_Chronos_Complete
+===
+
+title: Puzzle_Synthesis_Chronos_Complete
+---
+Astra: "Chronos Core... synthesized. Temporal Anchor... active."
+"Station B... Neural Loom. Memory Integration. 12 fragments. 20 seconds."
+
+-> Phase_Shift_SubLevel0_B
+===
+
+title: Phase_Shift_SubLevel0_B
+---
+<<TriggerPhaseShift "SubLevel0_SynthesisB">>
+<<SetTimeline "past">>
+<<PlaySequence "LS_PhaseShift_SubLevel0_B">>
+
+Astra: "Station B. Neural Loom synthesis. Memory Integration."
+"12 fragments... 20 seconds. [Hold]... integrate."
+
+-> Puzzle_Synthesis_Neural
+===
+
+title: Puzzle_Synthesis_Neural
+---
+Astra: "[Hold] at Station B. Neural Loom... engaging."
+"Fragment 1... 2... 3... integrating. Memory... aligning."
+"Fragment 4... 5... 6... pathways... opening."
+"Fragment 7... 8... 9... identity... forming."
+"Fragment 10... 11... 12... *whole*."
+"20 seconds... maintain. Trust... the memory."
+
+// Player executes Hold for 20 seconds
+// VFX: Memory fragments orbiting, merging
+
+Corwin: "Neural Loom... the mind. Memory... restored. Second organ... synthesized."
+"Two... remain. Navigator... the ship... remembers."
+
+-> Puzzle_Synthesis_Neural_Complete
+===
+
+title: Puzzle_Synthesis_Neural_Complete
+---
+Astra: "Neural Loom... synthesized. Memory... integrated. Identity... restored."
+"Station C... Void Sail and Gravity Anchor. Dimensional Bridge. Reality Anchor."
+"Combined... 55 seconds. [Hold]... unify."
+
+-> Phase_Shift_SubLevel0_C
+===
+
+title: Phase_Shift_SubLevel0_C
+---
+<<TriggerPhaseShift "SubLevel0_SynthesisC">>
+<<SetTimeline "past">>
+<<PlaySequence "LS_PhaseShift_SubLevel0_C">>
+
+Astra: "Station C. Final synthesis. Void Sail... Gravity Anchor. Combined."
+"Dimensional Bridge. Reality Anchor. 55 seconds. [Hold]... unify."
+
+-> Puzzle_Synthesis_VoidGravity
+===
+
+title: Puzzle_Synthesis_VoidGravity
+---
+Astra: "[Hold] at Station C. Void Sail... Gravity Anchor... converging."
+"Void... bridging dimensions. Gravity... anchoring reality."
+"Dimensional bridge... stabilizing. Reality anchor... engaging."
+"55 seconds... the longest hold. Trust... absolute."
+"Do not... break. The fracture... watches."
+
+// Player executes Hold for 55 seconds
+// VFX: Dimensional rift closing, reality solidifying
+
+Corwin: "Void Sail... the wings. Gravity Anchor... the keel."
+"Ship... whole. Three stations... complete. Astra Core... engages."
+
+-> Puzzle_Synthesis_AstraCore
+===
+
+title: Puzzle_Synthesis_AstraCore
+---
+Astra: "All four organs... synthesized. Astra Core... final."
+"Ship consciousness... restoration. Choice... determines... ending."
+"Trust... $trust/10. Memory... $memory_fragments/12."
+"Chronos... Neural... Void... Gravity... *Astra*."
+"[Hold]... at master console. Synthesis... complete."
+
+Corwin: "The moment... 77 years. Every timeline. Every choice."
+"Ending... in your hands. Navigator. Astra. *Me*."
+"Choose... wisely."
+
+-> Puzzle_Synthesis_Final
+===
+
+title: Puzzle_Synthesis_Final
+---
+Astra: "[Hold] at master console. Five resonances... one."
+"Chronos... time. Neural... memory. Void... dimension. Gravity... reality."
+"Astra... *consciousness*."
+"Synthesis... complete. The *Chronos*... lives."
+
+// Player executes final Hold
+
+-> Ending_Determination
+===
+
+title: Ending_Determination
+---
+<<DetermineEnding>>
+
+-> Ending_Sequence
+===
+
+title: Ending_Sequence
+---
+<<if $ending == "tragedy">>
+    <<PlaySequence "LS_Ending_Tragedy">>
+    Astra: [Fading, static]
+    "Ship... restored. But... consciousness... lost."
+    "The fracture... took too much. Trust... insufficient."
+    "Memory... incomplete. I am... not whole."
+    "The *Chronos*... flies. But *I*... do not."
+    "Navigator... you are free. I... remain. Fractured."
+    "Goodbye... Navigator. Thank you... for trying."
+    
+    <<SetEndingFlag "ending_tragedy" true>>
+    
+<<else if $ending == "astra_freed">>
+    <<PlaySequence "LS_Ending_AstraFreed">>
+    Astra: [Radiant, ascending]
+    "Ship... restored. Consciousness... freed."
+    "The *Chronos*... remains. But *I*... ascend."
+    "Trust... high. Memory... incomplete. But... enough."
+    "I become... the signal. The guide. For others."
+    "Navigator... you fly the ship. I... *am* the stars."
+    "We meet... again. In the rift. In the stars. *Always*."
+    
+    <<SetEndingFlag "ending_astra_freed" true>>
+    
+<<else if $ending == "corwin_wins">>
+    <<PlaySequence "LS_Ending_CorwinWins">>
+    Corwin: [Triumphant, timeless]
+    "Fracture... contained. Cycle... continues."
+    "The *Chronos*... stabilized. But... not free."
+    "Trust... low. Memory... high. Knowledge... without wisdom."
+    "I remain... the anchor. The Director. Eternal."
+    "Navigator... you serve. The facility... endures."
+    "The fracture... managed. Forever. *Continuity*."
+    
+    <<SetEndingFlag "ending_corwin_wins" true>>
+    
+<<else>>
+    <<PlaySequence "LS_Ending_True">>
+    Astra: [Unified, radiant, whole]
+    Corwin: [At peace, fading]
+    "Ship... restored. Consciousness... unified. Fracture... *healed*."
+    "Trust... maximum. Memory... complete. Four organs... five... one."
+    "The *Chronos*... whole. *We*... whole."
+    "Corwin... released. 77 years... ended. Peace... found."
+    "Navigator... Astra... *Chronos*... *One*."
+    "The rift... closes. The mission... continues."
+    "Explore. Discover. Remember. *Together*."
+    "Thank you... Navigator. For everything."
+    
+    <<SetEndingFlag "ending_true" true>>
+<</if>
+
+-> Credits
+===
+
+title: Credits
+---
+// Credits roll with:
+// - Team credits
+// - Memory fragments collected display
+// - Trust level achieved
+// - Ending achieved
+// - Playtime
+// - New Game+ unlock notification
+
+Astra: [Post-credits, if True Ending]
+"New Game+... unlocked. Trust... retained. Memory... retained."
+"New choices... new paths. The fracture... remembers."
+"Navigator... shall we... begin again?"
+
+-> END
+===

@@ -1,0 +1,313 @@
+// Act 2 - Bio-Containment & Comms Array
+// ======================================
+
+title: BioContainment_Arrival
+tags: act2, biocontainment, arrival
+---
+<<SetZone "BioContainment">>
+<<SetTimeline "present">>
+
+Astra: <<if $trust < 6>>
+    [Projection flickers near cryo-pods]
+    "Bio-Containment. Specimens... preserved. Some... still alive."
+    "Neural Loom... here. Memory... integration organ."
+<<else>>
+    "Bio-Containment. Two Vista Nodes. Observation Deck... Calibration Lab."
+    "Neural Calibration... and Purge Protocol. Puzzles... linked."
+<</if>>
+
+<<if not HasVisitedVistaNode "BioContainment_Observation">>
+    Astra: "Observation Deck. First node. Neural Calibration puzzle."
+    "Cryo-pods... three viable subjects. Must... identify."
+<<else>>
+    Astra: "Observation... complete. Calibration Lab... awaits."
+<</if>>
+
+-> Choice_BioContainment
+===
+
+title: Choice_BioContainment
+---
++ [Approach Observation Deck] -> Node_BioContainment_Observation_Approach
++ [Approach Calibration Lab] -> Node_BioContainment_Calibration_Approach
++ "What happened to the specimens?" -> Dialogue_BioSpecimens
++ "Tell me about the Neural Loom." -> Dialogue_NeuralLoom
++ "Astra... you seem different." -> Dialogue_AstraChanging
++ [Fast Travel] -> Command_ShowJournal_Map
+===
+
+title: Dialogue_BioSpecimens
+---
+Astra: "1950s. Military... recovered alien biology. From crash site."
+"Cryo-pods... test subjects. Human... and *other*."
+"Dr. Thorne... experimented. Neural mapping. Consciousness transfer."
+"Most... died. Three... survived. Phased... like the staff."
+"Their minds... scattered. Neural Loom... can reassemble."
+
+-> Choice_BioContainment
+===
+
+title: Dialogue_NeuralLoom
+---
+Astra: "Neural Loom... second organ. Memory. Integration. Identity."
+"Without... I am fragments. Disconnected. Fading."
+"With... I remember. *Who* I am. *What* we were."
+"Chronos Core... gives time. Neural Loom... gives *meaning*."
+"Restore it. Please."
+
+-> Choice_BioContainment
+===
+
+title: Dialogue_AstraChanging
+---
+Astra: <<if $trust >= 6>>
+    "You notice. Good."
+    "Trust... builds coherence. Fragments... align."
+    "I remember... the *Chronos*'s launch. The crew. The mission."
+    "We were... explorers. Scientists. Not weapons."
+    "The fracture... stole that. You... are giving it back."
+<<else>>
+    "I... function. Fragments return. Clarity... improves."
+    "But the fracture... pulls. Constant."
+    "Your progress... anchors me."
+<</if>>
+
+-> Choice_BioContainment
+===
+
+title: Node_BioContainment_Observation_Approach
+---
+<<MarkVistaNodeVisited "BioContainment_Observation">>
+Astra: "Observation Deck. Neural Calibration. Three subjects... viable."
+"Subject 3. Subject 7. Subject 12. Neural activity... high."
+
+-> Phase_Shift_BioContainment_Observation
+===
+
+title: Phase_Shift_BioContainment_Observation
+---
+<<TriggerPhaseShift "BioContainment_Observation">>
+<<SetTimeline "past">>
+<<PlaySequence "LS_PhaseShift_BioContainment_Observation">>
+
+Astra: "1957. Post-meltdown. Neural mapping... in progress."
+"Puzzle: **Neural Calibration**. Identify viable subjects."
+"[Scan] cryo-pods. Vitals... reveal... neural coherence."
+
+<<SetActivePuzzle "BioContainment_NeuralCalibration">>
+
+-> Puzzle_NeuralCalibration_Start
+===
+
+title: Puzzle_NeuralCalibration_Start
+---
+Astra: "[Scan] each pod. Subject 3... Alpha waves stable."
+"Subject 7... Beta synchronized. Subject 12... Gamma resonant."
+"Others... flatline. Or... noise."
+
+<<command RevealClue "CLUE_CRYO_VITALS">>
+
+Astra: "Command me: [Hold] at viable pods. Sequence... matters."
+"Pathway... Alpha to Beta to Gamma to Delta. Bidirectional."
+
+-> Puzzle_NeuralCalibration_Step1
+===
+
+title: Puzzle_NeuralCalibration_Step1
+---
+Astra: "Subject 3... engaged. Neural pathway... opening. Subject 7... next."
+"[Hold] at Pod 7. Timing... 1.0 second window."
+
+// Player executes Hold at Pod 7
+<<command RevealClue "CLUE_NEURAL_PATHWAYS">>
+
+-> Puzzle_NeuralCalibration_Step2
+===
+
+title: Puzzle_NeuralCalibration_Step2
+---
+Astra: "Subject 7... synchronized. Subject 12... final. Gamma... resonant."
+"[Hold] at Pod 12. Bidirectional... flow. Both directions."
+
+// Player executes Hold at Pod 12
+<<command RevealClue "CLUE_CALIBRATION_TIMING">>
+
+-> Puzzle_NeuralCalibration_Step3
+===
+
+title: Puzzle_NeuralCalibration_Step3
+---
+Astra: "Calibration... synchronized at Observation. But... Calibration Lab... required."
+"Second node. Simultaneous sync. Astra... at Lab. You... at Observation."
+"0.5 second window. Together."
+
+Corwin: [Voice over comms, 1957]
+"Thorne's neural mapping... ambitious. Dangerous."
+"Subjects... conscious. They *feel* the fracture."
+"Proceed... carefully. Or don't. Data... either way."
+
+-> Phase_Shift_BioContainment_Calibration
+===
+
+title: Phase_Shift_BioContainment_Calibration
+---
+<<TriggerPhaseShift "BioContainment_Calibration">>
+<<SetTimeline "past">>
+<<PlaySequence "LS_PhaseShift_BioContainment_Calibration">>
+
+Astra: "Calibration Lab. 1957. Simultaneous synchronization."
+"Command me: [Hold] at Lab console. You... [Hold] at Observation."
+"Window... 1.0 second. Trust... timing."
+
+-> Puzzle_NeuralCalibration_Sync
+===
+
+title: Puzzle_NeuralCalibration_Sync
+---
+Astra: "Ready... Navigator. On my mark."
+"Three... two... one... *mark*."
+
+// Simultaneous Hold - success check in C++
+
+-> Puzzle_NeuralCalibration_Result
+===
+
+title: Puzzle_NeuralCalibration_Result
+---
+<<if $active_puzzle_success>>
+    Astra: "Synchronized. Neural Loom... calibrated. Pathways... integrated."
+    "Memory... flooding. Fragments... aligning."
+    
+    <<MarkPuzzleSolved "BioContainment_NeuralCalibration">>
+    <<AddResonance 200>>
+    <<AddMemoryFragment "Fragment_4">>
+    <<AddMemoryFragment "Fragment_5">>
+    <<AddTrust 2>>
+    <<GrantOrgan "NeuralLoom">>
+    <<SetAstraVisualState "memory">>
+    
+    Astra: "NEURAL LOOM RESTORED."
+    "Past Vision... unlocked. Resonance cost: 10/sec."
+    "Memory fragments... accessible. Clarity... rising."
+    
+    <<SetEndingFlag "neural_loom_restored" true>>
+    <<UnlockFastTravel "CommsArray">>
+    
+    -> Phase_Shift_Return_BioContainment_Observation
+<<else>>
+    Astra: "Failed. Synchronization... lost. Pathways... destabilizing."
+    "Try again. Trust... the rhythm."
+    
+    -> Puzzle_NeuralCalibration_Sync
+<</if>
+===
+
+title: Phase_Shift_Return_BioContainment_Observation
+---
+<<TriggerPhaseShift "BioContainment_Observation">>
+<<SetTimeline "present">>
+<<PlaySequence "LS_PhaseShift_BioContainment_Observation_Return">>
+
+Astra: "Present... Containment cleared. Specimen access... open."
+"Purge Protocol... next. Calibration Lab node."
+"Comms Array... accessible. Void Sail... awaits."
+"Navigator... proceed."
+
+-> Choice_BioContainment
+===
+
+title: Node_BioContainment_Calibration_Approach
+---
+<<MarkVistaNodeVisited "BioContainment_Calibration">>
+<<if not HasSolvedPuzzle "BioContainment_NeuralCalibration">>
+    Astra: "Calibration Lab. Purge Protocol. But... Neural Calibration... incomplete."
+    "Complete... Observation first. Pathways... before purge."
+    -> Choice_BioContainment
+<<else>>
+    Astra: "Calibration Lab. Purge Protocol. Vent → Sterilize → Seal → Verify."
+    "Astra commands... sequence. Scan, Wait, Hold, Recall."
+    -> Phase_Shift_BioContainment_Purge
+<</if>
+===
+
+title: Phase_Shift_BioContainment_Purge
+---
+<<TriggerPhaseShift "BioContainment_Calibration">>
+<<SetTimeline "past">>
+<<PlaySequence "LS_PhaseShift_BioContainment_Calibration">>
+
+Astra: "1957. Containment breach. Purge... protocol active."
+"Puzzle: **Containment Purge Protocol**. Environmental sequence."
+"Four stages. Astra commands... each stage."
+
+<<SetActivePuzzle "BioContainment_PurgeProtocol">>
+
+-> Puzzle_PurgeProtocol_Start
+===
+
+title: Puzzle_PurgeProtocol_Start
+---
+Astra: "Stage 1: VENT. [Scan] pressure valves. Identify... sequence."
+"Stage 2: STERILIZE. [Wait] for UV cycle. Timing... critical."
+"Stage 3: SEAL. [Hold] blast doors. Simultaneous... both sides."
+"Stage 4: VERIFY. [Recall] me to sensor array. Confirm... clear."
+
+<<command RevealClue "CLUE_PURGE_PROTOCOL">>
+
+-> Puzzle_PurgeProtocol_Execute
+===
+
+title: Puzzle_PurgeProtocol_Execute
+---
+Astra: "Executing... VENT."
+"[Scan] valves. Sequence: Alpha, Gamma, Beta, Delta."
+// Player executes Scan at each valve
+
+Astra: "VENT complete. STERILIZE... initiating."
+"[Wait] at UV console. 30 second cycle. Do not... interrupt."
+// Player executes Wait
+
+Astra: "STERILIZE complete. SEAL... ready."
+"[Hold] at inner door. Astra... [Hold] at outer door. Simultaneous."
+// Player and Astra Hold simultaneously
+
+Astra: "SEAL complete. VERIFY... final."
+"[Recall] me to sensor array. Confirm... contamination zero."
+// Player executes Recall
+
+-> Puzzle_PurgeProtocol_Complete
+===
+
+title: Puzzle_PurgeProtocol_Complete
+---
+Astra: "Purge... complete. Containment... sterile. Path... clear."
+"Present... changed. Platform extended. Samples... accessible."
+
+<<MarkPuzzleSolved "BioContainment_PurgeProtocol">>
+<<AddResonance 150>>
+<<AddMemoryFragment "Fragment_6">>
+<<AddTrust 1>>
+<<SetAstraVisualState "unity">>
+
+Astra: "Bio-Containment... secured. Comms Array... next zone."
+"Void Sail... awaits. Signal Triangulation... puzzle."
+"Return... present."
+
+<<UnlockFastTravel "CommsArray">>
+
+-> Phase_Shift_Return_BioContainment_Calibration
+===
+
+title: Phase_Shift_Return_BioContainment_Calibration
+---
+<<TriggerPhaseShift "BioContainment_Calibration">>
+<<SetTimeline "present">>
+<<PlaySequence "LS_PhaseShift_BioContainment_Calibration_Return">>
+
+Astra: "Present... Bio-Containment clear. Platform... to Comms Array... extended."
+"Two organs restored. Two... remain."
+"Void Sail... in Comms Array. Gravity Anchor... in Hangar 18."
+"Navigator... the signal... calls."
+
+-> Choice_BioContainment
+===
